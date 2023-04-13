@@ -1,0 +1,31 @@
+/*
+    Document   : custom styles to modify the default Bulma style.
+    Created on : Apr 12, 2023, 9:10:33 AM
+    Author     : Sadik Al Barid
+*/
+
+
+/*Background styles for the login page section.*/
+.loginpage-bg {
+    background: #232526; /*fallback for old browsers*/
+    background: -webkit-linear-gradient(to right, #414345, #232526); /*Chrome 10-25, Safari 5.1-6*/
+    background: linear-gradient(to right, #414345, #232526); /*W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+*/
+}
+
+/*Background styles for the login form.*/
+.loginform-bg {
+    background: #ADA996; /*fallback for old browsers*/
+    background: -webkit-linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996); /*Chrome 10-25, Safari 5.1-6*/
+    background: linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996); /*W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+*/
+    max-width: 600px;
+    padding: 3rem;
+    border-radius: 17px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+/*Background styles for the registration form.*/
+.regform-bg{
+    background: #E9E9E9;
+    max-width: 500px;
+    padding: 1rem;
+}
