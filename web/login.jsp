@@ -24,9 +24,10 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" 
               onerror="this.onerror=null;this.href='${pageContext.request.contextPath}/resources/css/bulma.min.css';">
 
-        <!--import the custom css file to modify Bulma styles-->
+        <!--Import the custom css file to modify Bulma styles-->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/custom.css">
 
+        <!--Include the fontawesome cdn-->
         <script src="https://kit.fontawesome.com/75e766e3de.js" crossorigin="anonymous"></script>
     </head>
 
@@ -44,7 +45,7 @@
                         <h2 class="title">Sign in</h2>
 
                         <!-- Sign in form -->
-                        <form method="" action="" class="">
+                        <form method="" action="">
                             <!-- Username input field -->
                             <div class="field">
                                 <p class="control has-icons-left">
@@ -90,15 +91,13 @@
                         <figure class="pt-3">
                             <img src="${pageContext.request.contextPath}/resources/images/add-user.png" alt="log in image">
                         </figure>
-
                         <!-- Button to open registration modal -->
                         <button id="open-reg-modal" class="button is-success mt-5">Create new account</button>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Include the JavaScript file for the registration form modal and the log in button -->
-        <script src="${pageContext.request.contextPath}/resources/js/regForm.js"></script>
+        </section>                      
+        <!-- Include the JavaScript file for the registration modal and the log in button -->
+        <script src="${pageContext.request.contextPath}/resources/js/regModal.js"></script>
     </body>
 </html>
