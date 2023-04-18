@@ -8,29 +8,37 @@
 <%@page contentType="application/json" %>
 
 <%
-  // Get the username parameter from the AJAX GET request
-  String username = request.getParameter("username");
+  try {
+    // Get the username parameter from the AJAX GET request
+    String username = request.getParameter("username");
 
-  // Connect to the PostgreSQL database
-  String url = "jdbc:postgresql://localhost:5432/CourseSphereDB";
-  String user = "postgres";
-  String password = "1234";
-  Connection conn = DriverManager.getConnection(url, user, password);
+    // Load PostgreSQL JDBC driver
+    Class.forName("org.postgresql.Driver");
 
-  // Query the database to check if the username already exists
-  PreparedStatement stmt = conn.prepareStatement("SELECT COUNT(*) AS count FROM users WHERE uname = ?");
-  stmt.setString(1, username);
-  ResultSet rs = stmt.executeQuery();
-  rs.next();
-  int count = rs.getInt("count");
+    // Connect to the PostgreSQL database
+    String url = "jdbc:postgresql://localhost:5432/CourseSphereDB";
+    String user = "postgres";
+    String password = "1234";
+    Connection conn = DriverManager.getConnection(url, user, password);
 
-  // Close the database connection
-  rs.close();
-  stmt.close();
-  conn.close();
+    // Query the database to check if the username already exists
+    PreparedStatement stmt = conn.prepareStatement("SELECT COUNT(*) AS count FROM users WHERE uname = ?");
+    stmt.setString(1, username);
+    ResultSet rs = stmt.executeQuery();
+    rs.next();
+    int count = rs.getInt("count");
 
-  // Return the result as a JSON response
-  response.setContentType("application/json");
-  response.setCharacterEncoding("UTF-8");
-  response.getWriter().write("{\"count\": " + count + "}");
+    // Close the database connection and resources
+    rs.close();
+    stmt.close();
+    conn.close();
+
+    // Return the result as a JSON response
+    response.setContentType("application/json");
+    response.setCharacterEncoding("UTF-8");
+    response.getWriter().write("{\"count\": " + count + "}");
+  } catch (ClassNotFoundException | SQLException e) {
+    // Handle any exceptions that occur
+    e.printStackTrace();
+  }
 %>
