@@ -45,10 +45,14 @@
                         <!-- The input fields for first name and last name -->
                         <div class="columns">
                             <div class="column">
-                                <input class="input" type="text" name="fname" placeholder="First name">
+                                <input class="input" type="text" name="fname" id="fname" placeholder="First name" oninput="checkName('fname', 'fname-error')">
+                                <!-- The first name validation tag -->
+                                <p id="fname-error" class="help is-hidden has-text-danger"></p>
                             </div>
                             <div class="column">
-                                <input class="input" type="text" name="lname" placeholder="Last name">
+                                <input class="input" type="text" name="lname" id="lname" placeholder="Last name" oninput="checkName('lname', 'lname-error')">
+                                <!-- The last name validation tag -->
+                                <p id="lname-error" class="help is-hidden has-text-danger"></p>
                             </div>
                         </div>
 

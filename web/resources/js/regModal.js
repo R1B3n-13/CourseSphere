@@ -17,9 +17,9 @@ let closeRegModalButton = document.querySelector('[id="close-reg-modal"]');
 let signup = document.querySelector('[id="signup-btn"]');
 
 // username, password, email field flags and the function for sign up button status
-let uFlag = pFlag = eFlag = false;
+let nFlag = uFlag = pFlag = eFlag = false;
 function signupStatus() {
-    return pFlag | uFlag | eFlag;
+    return nFlag | pFlag | uFlag | eFlag;
 }
 
 // Function to open the modal
@@ -63,6 +63,13 @@ function validatePassword() {
     }
 }
 
+// Function to check whether the first name and last name contains only a-z, A-Z and space
+function isValidName(name) {
+    // regex pattern
+    const regex = /^[A-Za-z ]+$/;
+    return regex.test(name);
+}
+
 // Function to check whether the user name is alphanumeric (with _)
 function isValidUname(username) {
     // regex pattern
@@ -70,9 +77,9 @@ function isValidUname(username) {
     return regex.test(username);
 }
 
-// Function to check whether the email is alphanumeric (with _), contains @ and a domain name
+// Function to check whether the email address is valid according to rfc-2822 standard
 function isValidEmail(email) {
-    // RFC-2822 regex pattern for valid email
+    // RFC-2822 standard regex pattern for valid email
     const regex = new RegExp('^([^\\x00-\\x20\\x22\\x28\\x29\\x2c\\x2e\\x3a-\\x3c\\x3e\\x40\\x5b-\\x5d\\x7f-\\xff]+' +
             '|\\x22([^\\x0d\\x22\\x5c\\x80-\\xff]|\\x5c[\\x00-\\x7f])*\\x22)' +
             '(\\x2e([^\\x00-\\x20\\x22\\x28\\x29\\x2c\\x2e\\x3a-\\x3c\\x3e\\x40\\x5b-\\x5d\\x7f-\\xff]+' +
@@ -82,6 +89,31 @@ function isValidEmail(email) {
             '(\\x2e([^\\x00-\\x20\\x22\\x28\\x29\\x2c\\x2e\\x3a-\\x3c\\x3e\\x40\\x5b-\\x5d\\x7f-\\xff]+' +
             '|\\x5b([^\\x0d\\x5b-\\x5d\\x80-\\xff]|\\x5c[\\x00-\\x7f])*\\x5d))*$', 'gm');
     return regex.test(email);
+}
+
+// Function to check whether the first name and last name is valid
+function checkName(id, error_id) {
+    // Get the value of the input field for username
+    let name = document.getElementById(id);
+
+    //Get the name error p tag
+    let nameError = document.getElementById(error_id);
+
+    // Show the validation message
+    if (isValidName(name.value)) {
+        // If valid, hide the error message and enable the sign-up button
+        nameError.classList.add("is-hidden");
+        name.classList.remove('is-danger');
+        nFlag = false;
+        signup.disabled = signupStatus();
+    } else {
+        // If not valid, show the error message and disable the sign-up button
+        nameError.classList.remove("is-hidden");
+        nameError.innerHTML = "Name can only contain letters";
+        rname.classList.add('is-danger');
+        nFlag = true;
+        signup.disabled = signupStatus();
+    }
 }
 
 // Function to check whether the user name is valid
