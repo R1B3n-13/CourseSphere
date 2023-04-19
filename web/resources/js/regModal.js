@@ -66,14 +66,14 @@ function validatePassword() {
 // Function to check whether the user name is alphanumeric (with _)
 function isValidUname(username) {
     // regex pattern
-    var regex = /^[a-zA-Z0-9_]+$/;
+    let regex = /^[a-zA-Z0-9_]+$/;
     return regex.test(username);
 }
 
 // Function to check whether the email is alphanumeric (with _), contains @ and a domain name
-function isValidEmail() {
+function isValidEmail(email) {
     // regex pattern
-    var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    let regex = /^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*$/gm;
     return regex.test(email);
 }
 
@@ -119,7 +119,7 @@ function checkUsername() {
     } else {
         // If not valid, show the error message and disable the sign-up button
         usernameError.classList.remove("is-hidden");
-        usernameError.innerHTML = "Invalid username";
+        usernameError.innerHTML = "Username can only contain alphanumeric characters and underscore";
         username.classList.add('is-danger');
         uFlag = true;
         signup.disabled = signupStatus();
@@ -167,8 +167,8 @@ function checkEmail() {
         xhttp.send();
     } else {
         // If not valid, show the error message and disable the sign-up button
-        email.classList.remove("is-hidden");
-        emailError.innerHTML = "Invalid username. Username can contain only alphanumeric character and _(underscore)";
+        emailError.classList.remove("is-hidden");
+        emailError.innerHTML = "Invalid email";
         email.classList.add('is-danger');
         eFlag = true;
         signup.disabled = signupStatus();

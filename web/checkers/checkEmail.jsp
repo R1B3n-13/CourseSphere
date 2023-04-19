@@ -9,8 +9,8 @@
 
 <%
   try {
-    // Get the username parameter from the AJAX GET request
-    String username = request.getParameter("email");
+    // Get the email parameter from the AJAX GET request
+    String email = request.getParameter("email");
 
     // Load PostgreSQL JDBC driver
     Class.forName("org.postgresql.Driver");
@@ -21,7 +21,7 @@
     String password = "1234";
     Connection conn = DriverManager.getConnection(url, user, password);
 
-    // Query the database to check if the username already exists
+    // Query the database to check if the email already exists
     PreparedStatement stmt = conn.prepareStatement("SELECT COUNT(*) AS count FROM users WHERE email = ?");
     stmt.setString(1, email);
     ResultSet rs = stmt.executeQuery();
