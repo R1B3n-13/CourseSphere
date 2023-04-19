@@ -72,7 +72,7 @@
 
                         <!-- The input field for password -->
                         <div class="field">
-                            <input class="input" type="password" name="pwd" id="pwd" placeholder="New password">
+                            <input class="input" type="password" name="pwd" id="pwd" oninput="validatePassword()" placeholder="New password">
                         </div>
 
                         <!-- The input field to confirm password -->
@@ -89,7 +89,7 @@
 
                     <!-- The footer section of the modal with sign up button -->
                     <footer class="modal-card-foot regform-bg">
-                        <button class="button is-block is-success is-medium is-fullwidth" id="signup-btn">Sign Up</button>
+                        <button class="button is-block is-success is-medium is-fullwidth" id="signup-btn" disabled>Sign Up</button>
                     </footer>
                 </form>
             </div>

@@ -17,7 +17,7 @@ let closeRegModalButton = document.querySelector('[id="close-reg-modal"]');
 let signup = document.querySelector('[id="signup-btn"]');
 
 // username, password, email field flags and the function for sign up button status
-let nFlag = uFlag = pFlag = eFlag = false;
+let nFlag = uFlag = pFlag = eFlag = true;
 function signupStatus() {
     return nFlag | pFlag | uFlag | eFlag;
 }
@@ -50,14 +50,24 @@ function validatePassword() {
     // Check if the passwords match
     if (pwd.value !== confirmpwd.value) {
         // If the passwords don't match, show the error message and disable the sign-up button
-        error.classList.remove('is-hidden');
+        if (confirmpwd.value !== "") {
+            error.classList.remove('is-hidden');
+            confirmpwd.classList.add('is-danger');
+        }
+        pFlag = true;
+        signup.disabled = signupStatus();
+    } else if (pwd.value === "") {
+        // If the password is null, disable the sign-up button
+        error.classList.add('is-hidden');
         confirmpwd.classList.add('is-danger');
+        pwd.classList.add('is-danger');
         pFlag = true;
         signup.disabled = signupStatus();
     } else {
         // If the passwords match, hide the error message and enable the sign-up button
         error.classList.add('is-hidden');
         confirmpwd.classList.remove('is-danger');
+        pwd.classList.remove('is-danger');
         pFlag = false;
         signup.disabled = signupStatus();
     }
@@ -66,7 +76,7 @@ function validatePassword() {
 // Function to check whether the first name and last name contains only a-z, A-Z and space
 function isValidName(name) {
     // regex pattern
-    const regex = /^[A-Za-z ]+$/;
+    const regex = /^[A-Za-z ]*[A-Za-z][A-Za-z ]*$/;
     return regex.test(name);
 }
 
@@ -109,8 +119,8 @@ function checkName(id, error_id) {
     } else {
         // If not valid, show the error message and disable the sign-up button
         nameError.classList.remove("is-hidden");
-        nameError.innerHTML = "Name can only contain letters";
-        rname.classList.add('is-danger');
+        nameError.innerHTML = "Name should only contain letters";
+        name.classList.add('is-danger');
         nFlag = true;
         signup.disabled = signupStatus();
     }
@@ -158,7 +168,7 @@ function checkUsername() {
     } else {
         // If not valid, show the error message and disable the sign-up button
         usernameError.classList.remove("is-hidden");
-        usernameError.innerHTML = "Username can only contain alphanumeric characters and underscore";
+        usernameError.innerHTML = "Username should only contain alphanumeric characters and underscore";
         username.classList.add('is-danger');
         uFlag = true;
         signup.disabled = signupStatus();
