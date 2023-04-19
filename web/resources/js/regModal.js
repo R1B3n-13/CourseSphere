@@ -70,6 +70,13 @@ function isValidUname(username) {
     return regex.test(username);
 }
 
+// Function to check whether the email is alphanumeric (with _), contains @ and a domain name
+function isValidEmail() {
+    // regex pattern
+    var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    return regex.test(email);
+}
+
 // Function to check whether the user name is valid
 function checkUsername() {
     // Get the value of the input field for username
@@ -115,6 +122,55 @@ function checkUsername() {
         usernameError.innerHTML = "Invalid username";
         username.classList.add('is-danger');
         uFlag = true;
+        signup.disabled = signupStatus();
+    }
+}
+
+// Function to check whether the email is valid
+function checkEmail() {
+    // Get the value of the input field for email
+    let email = document.getElementById("email");
+
+    //Get the email-error p tag
+    let emailError = document.getElementById("email-error");
+
+    // Create a new XMLHttpRequest object
+    let xhttp = new XMLHttpRequest();
+
+    // Set the function to handle the AJAX response
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            // Parse the JSON response
+            let response = JSON.parse(this.responseText);
+
+            // Show the validation message
+            if (response.count > 0) {
+                // If not valid, show the error message and disable the sign-up button
+                emailError.classList.remove("is-hidden");
+                emailError.innerHTML = "Email is already registered with another account";
+                email.classList.add('is-danger');
+                eFlag = true;
+                signup.disabled = signupStatus();
+            } else {
+                // If valid, hide the error message and enable the sign-up button
+                emailError.classList.add("is-hidden");
+                email.classList.remove('is-danger');
+                eFlag = false;
+                signup.disabled = signupStatus();
+            }
+        }
+    };
+
+    // Send an AJAX GET request to the server to check if the email already exists
+    if (isValidEmail(email.value)) {
+        xhttp.open("GET", "./checkers/checkEmail.jsp?email=" + email.value, true);
+        xhttp.send();
+    } else {
+        // If not valid, show the error message and disable the sign-up button
+        email.classList.remove("is-hidden");
+        emailError.innerHTML = "Invalid username. Username can contain only alphanumeric character and _(underscore)";
+        email.classList.add('is-danger');
+        eFlag = true;
         signup.disabled = signupStatus();
     }
 }

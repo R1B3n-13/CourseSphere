@@ -3,8 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/E:/Dev/Java-NetBeans/CourseSphere/web/checkers/checkUsername.jsp</file>
             <file>file:/E:/Dev/Java-NetBeans/CourseSphere/web/registration.jsp</file>
             <file>file:/E:/Dev/Java-NetBeans/CourseSphere/src/java/com/coursesphere/registration/RegistrationServlet.java</file>
+            <file>file:/E:/Dev/Java-NetBeans/CourseSphere/web/checkers/checkEmail.jsp</file>
+            <file>file:/E:/Dev/Java-NetBeans/CourseSphere/web/resources/js/regModal.js</file>
             <file>file:/E:/Dev/Java-NetBeans/CourseSphere/web/login.jsp</file>
         </group>
     </open-files>

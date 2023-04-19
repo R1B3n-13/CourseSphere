@@ -61,7 +61,9 @@
 
                         <!-- The input field for email -->
                         <div class="field">
-                            <input class="input" type="email" name="email" placeholder="Email address">
+                            <input class="input" type="email" name="email" id="email" placeholder="Email address" oninput="checkEmail()">
+                            <!-- The email validation tag -->
+                            <p id="email-error" class="help is-hidden has-text-danger"></p>
                         </div>                        
 
                         <!-- The input field for password -->
