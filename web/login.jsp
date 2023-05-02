@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="registration.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -65,6 +66,18 @@
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-lock"></i>
                                     </span>
+
+                                    <!-- Login validation using jstl -->
+                                    <c:choose>
+                                        <c:when test="${sessionScope.status == 'failed'}">
+                                        <p class="help has-text-danger">Invalid username or password</p>
+                                        <% session.removeAttribute("status"); %>
+                                    </c:when>    
+                                    <c:when test="${sessionScope.status == 'error'}">
+                                        <p class="help has-text-danger">Internal error. Login failed!</p>
+                                        <% session.removeAttribute("status"); %>
+                                    </c:when>
+                                </c:choose>
                                 </p>
                             </div>
 

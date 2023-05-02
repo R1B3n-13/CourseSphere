@@ -17,7 +17,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.Base64;
-import java.util.UUID;
 
 /**
  *
@@ -89,7 +88,9 @@ public class LoginServlet extends HttpServlet {
                     // Send response to home.jsp
                     response.sendRedirect("protected/home.jsp");
                 } else {
-                    // Send response to login.jsp
+                    // if error occurs, set the status to "error" in the session and redirect to the login page
+                    session = request.getSession();
+                    session.setAttribute("status", "error");
                     response.sendRedirect("login.jsp");
                 }
             } else {
@@ -112,15 +113,20 @@ public class LoginServlet extends HttpServlet {
                     }
                 }
 
-                // Send response to login.jsp
+                // if the credentials are incorrect, set the status to "failed" in the session and redirect to the login page
+                session = request.getSession();
+                session.setAttribute("status", "failed");
                 response.sendRedirect("login.jsp");
             }
 
         } catch (ClassNotFoundException | SQLException e) {
             // Log the error and display an error message
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, e.getMessage(), e);
-            request.setAttribute("status", "error");
-//            request.getRequestDispatcher("register.jsp").forward(request, response);
+
+            // Set the status to "error" in the session and redirect to the login page
+            session = request.getSession();
+            session.setAttribute("status", "error");
+            response.sendRedirect("login.jsp");
 
         } finally {
             // Close the database connection and prepared statement
