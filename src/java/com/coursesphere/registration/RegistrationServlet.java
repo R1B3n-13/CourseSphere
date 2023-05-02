@@ -13,7 +13,12 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.UUID;
 
+/**
+ *
+ * @author Sadik Al Barid
+ */
 @WebServlet(name = "RegistrationServlet", urlPatterns = {"/register"})
 public class RegistrationServlet extends HttpServlet {
 
@@ -60,17 +65,35 @@ public class RegistrationServlet extends HttpServlet {
             String statusMessage;
             if (rowsAffected > 0) {
                 statusMessage = "success";
+
+                // Generate a unique token for the user
+                String token = UUID.randomUUID().toString();
+
+                // Save the token in the database along with the user ID
+                stmt = conn.prepareStatement("INSERT INTO login_tokens (uname, utoken) VALUES (?, ?)");
+                stmt.setString(1, uname);
+                stmt.setString(2, token);
+
+                // Execute the SQL statement and get the number of rows affected
+                rowsAffected = stmt.executeUpdate();
+                if (rowsAffected < 0) {
+                    statusMessage = "failed";
+                    // Delete the previously inserted user
+                    stmt = conn.prepareStatement("DELETE FROM users WHERE uname = ?");
+                    stmt.setString(1, uname);
+                    stmt.execute();
+                }
             } else {
                 statusMessage = "failed";
             }
             request.setAttribute("status", statusMessage);
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            response.sendRedirect("login.jsp");
 
         } catch (ClassNotFoundException | SQLException e) {
             // Log the error and display an error message
             Logger.getLogger(RegistrationServlet.class.getName()).log(Level.SEVERE, e.getMessage(), e);
             request.setAttribute("status", "error");
-            request.getRequestDispatcher("register.jsp").forward(request, response);
+//            request.getRequestDispatcher("register.jsp").forward(request, response);
 
         } finally {
             // Close the database connection and prepared statement

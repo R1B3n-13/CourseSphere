@@ -45,11 +45,12 @@
                         <h2 class="title">Sign in</h2>
 
                         <!-- Sign in form -->
-                        <form method="" action="">
+                        <form method="post" action="login">
                             <!-- Username input field -->
                             <div class="field">
                                 <p class="control has-icons-left">
-                                    <input class="input" type="text" placeholder="Username">
+                                    <input class="input" type="text" name="username" placeholder="Username" 
+                                           required oninvalid="this.setCustomValidity('Please enter your user name')" oninput="this.setCustomValidity('')">
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-user"></i>
                                     </span>
@@ -59,7 +60,8 @@
                             <!-- Password input field -->
                             <div class="field">
                                 <p class="control has-icons-left">
-                                    <input class="input" type="password" placeholder="Password">
+                                    <input class="input" type="password" name="password" placeholder="Password" 
+                                           required oninvalid="this.setCustomValidity('Please enter your password')" oninput="this.setCustomValidity('')">
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-lock"></i>
                                     </span>
@@ -70,8 +72,8 @@
                             <div class="field">
                                 <p class="control">
                                     <label class="checkbox">
-                                        <input type="checkbox">
-                                        Remember me
+                                        <input type="checkbox" name="rememberMe">
+                                        Remember me for 30 days
                                     </label>
                                 </p>
                             </div>
