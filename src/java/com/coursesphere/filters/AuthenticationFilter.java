@@ -113,9 +113,19 @@ public class AuthenticationFilter implements Filter {
             if (rs.next()) {
                 token = rs.getString("utoken");
 
-                // Create session and set the "name" session attribute to the value of the "uname" column in the ResultSet
+                // Create session and set the "uname" and "fname" session attribute
                 session = httpRequest.getSession(true);
-                session.setAttribute("name", rs.getString("uname"));
+                session.setAttribute("uname", rs.getString("uname"));
+
+                // Get first name of the user
+                query = "SELECT fname, lname FROM users WHERE uname = ?";
+                stmt = conn.prepareStatement(query);
+                stmt.setString(1, username);
+                rs = stmt.executeQuery();
+                if (rs.next()) {
+                    session.setAttribute("fname", rs.getString("fname"));
+                    session.setAttribute("lname", rs.getString("lname"));
+                }
             }
 
             rs.close();

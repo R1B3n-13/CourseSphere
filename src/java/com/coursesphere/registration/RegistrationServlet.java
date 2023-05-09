@@ -33,6 +33,7 @@ public class RegistrationServlet extends HttpServlet {
         String uname = request.getParameter("uname");
         String email = request.getParameter("email");
         String pwd = request.getParameter("pwd");
+        String role = request.getParameter("role");
 
         // Database credentials
         String url = "jdbc:postgresql://localhost:5432/CourseSphereDB";
@@ -41,9 +42,12 @@ public class RegistrationServlet extends HttpServlet {
 
         // Initialize database connection and prepared statement
         Connection conn = null;
-        PreparedStatement stmt = null;
+        PreparedStatement stmt1 = null, stmt2 = null, stmt3 = null;
 
         try {
+            // Generate a unique token for the user
+            String token = UUID.randomUUID().toString();
+
             // Load PostgreSQL JDBC driver
             Class.forName("org.postgresql.Driver");
 
@@ -51,55 +55,51 @@ public class RegistrationServlet extends HttpServlet {
             conn = DriverManager.getConnection(url, user, password);
 
             // Prepare the SQL statement for inserting a new user into the database
-            stmt = conn.prepareStatement("INSERT INTO users(fname, lname, uname, email, pwd) VALUES (?, ?, ?, ?, ?)");
-            stmt.setString(1, fname);
-            stmt.setString(2, lname);
-            stmt.setString(3, uname);
-            stmt.setString(4, email);
-            stmt.setString(5, pwd);
+            stmt1 = conn.prepareStatement("INSERT INTO users(fname, lname, uname, email, pwd) VALUES (?, ?, ?, ?, ?)");
+            stmt1.setString(1, fname);
+            stmt1.setString(2, lname);
+            stmt1.setString(3, uname);
+            stmt1.setString(4, email);
+            stmt1.setString(5, pwd);
 
-            // Execute the SQL statement and get the number of rows affected
-            int rowsAffected = stmt.executeUpdate();
+            // Prepare the SQL statement for inserting a new login token into the database
+            stmt2 = conn.prepareStatement("INSERT INTO login_tokens (uname, utoken) VALUES (?, ?)");
+            stmt2.setString(1, uname);
+            stmt2.setString(2, token);
 
-            // Set status message and forward the request to the login page
-            String statusMessage;
-            if (rowsAffected > 0) {
-                statusMessage = "success";
+            // Prepare the SQL statement for inserting either in teachers or students table
+            stmt3 = conn.prepareStatement("INSERT INTO " + role + "s" + " (uname) VALUES (?)");
+            stmt3.setString(1, uname);
 
-                // Generate a unique token for the user
-                String token = UUID.randomUUID().toString();
+            // Batch update
+            conn.setAutoCommit(false);
+            stmt1.execute();
+            stmt2.execute();
+            stmt3.execute();
+            conn.commit();
 
-                // Save the token in the database along with the user ID
-                stmt = conn.prepareStatement("INSERT INTO login_tokens (uname, utoken) VALUES (?, ?)");
-                stmt.setString(1, uname);
-                stmt.setString(2, token);
-
-                // Execute the SQL statement and get the number of rows affected
-                rowsAffected = stmt.executeUpdate();
-                if (rowsAffected < 0) {
-                    statusMessage = "failed";
-                    // Delete the previously inserted user
-                    stmt = conn.prepareStatement("DELETE FROM users WHERE uname = ?");
-                    stmt.setString(1, uname);
-                    stmt.execute();
-                }
-            } else {
-                statusMessage = "failed";
-            }
-            request.setAttribute("status", statusMessage);
+            // Send the response back to the login page
             response.sendRedirect("login.jsp");
-
         } catch (ClassNotFoundException | SQLException e) {
-            // Log the error and display an error message
+            // Log the error, rollback the changes and display an error message
             Logger.getLogger(RegistrationServlet.class.getName()).log(Level.SEVERE, e.getMessage(), e);
-            request.setAttribute("status", "error");
+            if (conn != null) {
+                try {
+                    conn.rollback();
+                } catch (SQLException ex) {
+                    Logger.getLogger(RegistrationServlet.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+                }
+            }
 //            request.getRequestDispatcher("register.jsp").forward(request, response);
 
         } finally {
             // Close the database connection and prepared statement
             try {
-                if (stmt != null) {
-                    stmt.close();
+                if (stmt1 != null) {
+                    stmt1.close();
+                }
+                if (stmt2 != null) {
+                    stmt2.close();
                 }
                 if (conn != null) {
                     conn.close();

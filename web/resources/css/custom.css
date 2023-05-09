@@ -4,6 +4,13 @@
     Author     : Sadik Al Barid
 */
 
+/*Import the google font*/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans');
+
+/*Global styles*/
+body {
+    font-family: 'Noto Sans', sans-serif;
+}
 
 /*Background styles for the login page section.*/
 .loginpage-bg {
@@ -24,8 +31,24 @@
 }
 
 /*Background styles for the registration form.*/
-.regform-bg{
+.regform-bg {
     background: #E9E9E9;
     max-width: 500px;
     padding: 1rem;
 }
+
+/*Navigation bar custom styles*/
+.navbar {
+    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2);
+}
+
+/*Custom style for the name acronym card*/
+.navbar-end .card {
+    border-radius:50%;
+    border-style:solid;
+    border-color:#00B594;
+    background-color:#00B594;
+    width:40px;
+    height:40px;
+}
+

@@ -42,12 +42,16 @@
                 <div class="columns is-vcentered is-centered has-text-centered-mobile is-variable is-5">
                     <!-- Login form column -->
                     <div class="column">
-                        <img src="${pageContext.request.contextPath}/resources/images/logo.png" alt="Logo">
-                        <h2 class="title">Sign in</h2>
+                        <label class="is-flex is-align-items-center mb-2">
+                            <img src="${pageContext.request.contextPath}/resources/images/logo.png" alt="Logo">
+                            <p class="has-text-dark has-text-weight-bold is-size-2">Course</p>
+                            <p class="has-text-success-dark has-text-weight-bold is-size-4">Sphere</p>
+                        </label>
 
                         <!-- Sign in form -->
                         <form method="post" action="login">
                             <!-- Username input field -->
+                            <h2 class="title has-text-weight-semibold is-4 mb-2 mt-4">Sign in</h2>
                             <div class="field">
                                 <p class="control has-icons-left">
                                     <input class="input" type="text" name="username" placeholder="Username" 
@@ -67,15 +71,13 @@
                                         <i class="fas fa-lock"></i>
                                     </span>
 
-                                    <!-- Login validation using jstl -->
+                                    <!-- Login validation message using jstl -->
                                     <c:choose>
                                         <c:when test="${sessionScope.status == 'failed'}">
-                                        <p class="help has-text-danger">Invalid username or password</p>
-                                        <% session.removeAttribute("status"); %>
+                                        <p class="help has-text-danger m-0">Invalid username or password</p>
                                     </c:when>    
                                     <c:when test="${sessionScope.status == 'error'}">
-                                        <p class="help has-text-danger">Internal error. Login failed!</p>
-                                        <% session.removeAttribute("status"); %>
+                                        <p class="help has-text-danger m-0">Internal error. Login failed!</p>
                                     </c:when>
                                 </c:choose>
                                 </p>
@@ -103,11 +105,20 @@
                     <!-- Image column -->
                     <div class="column has-text-centered">
                         <!-- Image related to registration -->
-                        <figure class="pt-3">
+                        <figure class="pt-4">
                             <img src="${pageContext.request.contextPath}/resources/images/add-user.png" alt="log in image">
                         </figure>
+
                         <!-- Button to open registration modal -->
-                        <button id="open-reg-modal" class="button is-success mt-5">Create new account</button>
+                        <c:choose>
+                            <c:when test="${sessionScope.status == 'failed' or sessionScope.status == 'error'}">
+                                <button id="open-reg-modal" class="button is-success mt-4">Create new account</button>
+                                <% session.removeAttribute("status"); %>
+                            </c:when>    
+                            <c:otherwise>
+                                <button id="open-reg-modal" class="button is-success">Create new account</button>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
             </div>

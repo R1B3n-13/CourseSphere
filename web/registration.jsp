@@ -82,9 +82,33 @@
                             <p class="help is-hidden has-text-danger" id="confirmpwd-error">Passwords do not match</p>
                         </div>
 
+                        <!-- The radio buttons for the role selection -->
+                        <div class="field">
+                            <label>Role :</label>
+                            <div class="control">
+                                <div class="tabs is-toggle">
+                                    <ul>
+                                        <li>
+                                            <label class="button is-small">
+                                                <input type="radio" name="role" value="teacher" checked>
+                                                <span class="icon is-small m-1"><i class="fas fa-person-chalkboard"></i></span>
+                                                <span>Teacher</span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="button is-small">
+                                                <input type="radio" name="role" value="student">
+                                                <span class="icon is-small m-1"><i class="fas fa-user-graduate"></i></span>
+                                                <span>Student</span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- The terms and conditions link -->
                         <p class="has-text-centered">By clicking Sign Up, you agree to our <a href="#">Terms & Conditions</a>.</p>
-
                     </section>                  
 
                     <!-- The footer section of the modal with sign up button -->
