@@ -11,6 +11,7 @@
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ include file="newCourseForm.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -34,7 +35,10 @@
               onerror="this.onerror=null;this.href='${pageContext.request.contextPath}/resources/css/bulma-badge.min.css';">
 
         <!--Import the custom css file to modify Bulma styles-->
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/custom.css"> 
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/custom.css">
+
+        <!--Include the fontawesome cdn-->
+        <script src="https://kit.fontawesome.com/75e766e3de.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <nav class="navbar is-light" role="navigation" aria-label="main navigation">
@@ -45,10 +49,11 @@
                     <p class="has-text-success-dark has-text-weight-bold">Sphere</p>
                 </a>
 
-                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+                <a role="button" class="navbar-burger has-text-left" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span></a>
+                    <span aria-hidden="true"></span>
+                </a>
             </div>
 
             <div id="navbarMenu" class="navbar-menu has-text-weight-semibold">
@@ -60,31 +65,80 @@
                         <a class="navbar-link">More</a>
 
                         <div class="navbar-dropdown is-boxed has-text-weight-medium">
-                            <a class="navbar-item">FAQ</a>
-                            <a class="navbar-item">About</a>                            
-                            <a class="navbar-item">Contact</a>
+                            <a class="navbar-item">                                    
+                                <span class="icon is-small mr-2">
+                                    <i class="fas fa-clipboard-question"></i>
+                                </span>
+                                FAQ
+                            </a>
+                            <a class="navbar-item">                                    
+                                <span class="icon is-small mr-2">
+                                    <i class="fas fa-circle-info"></i>
+                                </span>
+                                About
+                            </a>                            
+                            <a class="navbar-item">                                    
+                                <span class="icon is-small mr-2">
+                                    <i class="fas fa-address-card"></i>
+                                </span>
+                                Contact
+                            </a>
                         </div>
                     </div>
                 </div>
 
                 <div class="navbar-end is-align-items-center">
-                    <figure class="image is-32x32 mr-5">
+                    <div class="dropdown is-right">
+                        <div class="dropdown-trigger">
+                            <div class="image is-32x32 mr-5" style="cursor: pointer;" aria-haspopup="true" aria-controls="dropdown-menu">
+                                <img src="${pageContext.request.contextPath}/resources/images/plus.png">
+                            </div>
+                        </div>
+
+                        <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                            <div class="dropdown-content has-text-weight-medium">
+                                <a id="open-course-form" class="dropdown-item m-1">
+                                    <span class="icon is-small mr-1">
+                                        <i class="fas fa-plus"></i>
+                                    </span>
+                                    Create course
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <figure class="image is-32x32 mr-5" style="cursor: pointer;">
                         <span class="badge is-danger">0</span>
                         <img src="${pageContext.request.contextPath}/resources/images/envelope.png">
                     </figure>
 
                     <div class="dropdown is-right">
                         <div class="dropdown-trigger">
-                            <div class="card m-1" aria-haspopup="true" aria-controls="dropdown-menu">
-                                <p class="has-text-centered has-text-light mt-1"><%= Character.toUpperCase(fname.charAt(0)) %><%= Character.toUpperCase(lname.charAt(0)) %></p>
+                            <div class="card m-1" style="cursor: pointer;" aria-haspopup="true" aria-controls="dropdown-menu">
+                                <p class="has-text-centered has-text-light is-size-5" style="cursor: pointer;">
+                                    <%= Character.toUpperCase(fname.charAt(0)) %>
+                                </p>
                             </div>
                         </div>
+
                         <div class="dropdown-menu" id="dropdown-menu" role="menu">
                             <div class="dropdown-content has-text-weight-medium">
-                                <p class="dropdown-item has-text-centered has-text-weight-semibold"><%= fname %> <%= lname %></p>
+                                <label class="dropdown-item has-text-centered has-text-weight-semibold has-text-link-dark">
+                                    <%= fname %> <%= lname %>
+                                </label>
                                 <hr class="dropdown-divider">
-                                <a href="#" class="dropdown-item">Modifiers</a>
-                                <a href="#" class="dropdown-item">Grid</a>
+                                <a href="#" class="dropdown-item m-1">
+                                    <span class="icon is-small mr-1">
+                                        <i class="fas fa-gear"></i>
+                                    </span>
+                                    Settings
+                                </a>
+                                <a href="#" class="dropdown-item m-1">
+                                    <span class="icon is-small mr-1">
+                                        <i class="fas fa-arrow-right-from-bracket"></i>
+                                    </span>
+                                    Sign out
+                                </a>
                             </div>
                         </div>
                     </div>
