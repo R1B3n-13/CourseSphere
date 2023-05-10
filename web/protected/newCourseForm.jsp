@@ -28,32 +28,34 @@
         <!-- The modal for the new course form -->
         <div id="course-form" class="modal">
             <div class="modal-background"></div>
-            <div class="modal-card regform-bg" style="border-radius:17px;">
+            <div class="modal-card form-bg" style="border-radius:17px;">
                 <!-- The header section of the modal -->
-                <header class="modal-card-head regform-bg">
-                    <p class="modal-card-title has-text-weight-semibold">Create Course</p>
-                    <a id="close-course-form" class="tag is-delete is-rounded" aria-label="close"></a>
+                <header class="modal-card-head form-bg">
+                    <p class="modal-card-title has-text-weight-semibold">Create course</p>
                 </header>
 
                 <!-- create course form -->
-                <form method="post" action="create">
+                <form id="create-course-form" method="post" action="create">
                     <!-- The main content section of the modal -->
-                    <section class="modal-card-body regform-bg">                    
+                    <section class="modal-card-body form-bg">                    
 
                         <!-- The input field for course title -->
                         <div class="field">
-                            <input class="input" type="text" name="course-title" id="course-title" placeholder="Course title">
+                            <input class="input" type="text" name="course-title" id="course-title" placeholder="Course title"
+                                   required oninvalid="this.setCustomValidity('Please enter course title')" oninput="this.setCustomValidity('')">
                         </div>
 
                         <!-- The input field for subject name -->
                         <div class="field">
-                            <input class="input" type="text" name="subject" id="subject" placeholder="Subject">
+                            <input class="input" type="text" name="subject" id="subject" placeholder="Subject"
+                                   required oninvalid="this.setCustomValidity('Please enter subject name')" oninput="this.setCustomValidity('')">
                         </div>                        
                     </section>                  
 
                     <!-- The footer section of the modal with sign up button -->
-                    <footer class="modal-card-foot regform-bg">
-                        <button class="button is-block is-link is-medium is-fullwidth">Submit</button>
+                    <footer class="modal-card-foot is-flex-direction-row-reverse form-bg">
+                        <a class="has-text-info-dark has-text-weight-medium" onclick="document.getElementById('create-course-form').submit()">Create</a>
+                        <a id="close-course-form" class="has-text-grey has-text-weight-medium mr-3">Cancel</a>                        
                     </footer>
                 </form>
             </div>

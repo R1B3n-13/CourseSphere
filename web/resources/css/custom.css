@@ -31,7 +31,7 @@ body {
 }
 
 /*Background styles for the registration form.*/
-.regform-bg {
+.form-bg {
     background: #E9E9E9;
     max-width: 500px;
     padding: 1rem;

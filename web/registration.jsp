@@ -31,9 +31,9 @@
         <!-- The modal for the registration form -->
         <div id="reg-modal" class="modal">
             <div class="modal-background"></div>
-            <div class="modal-card regform-bg" style="border-radius:17px;">
+            <div class="modal-card form-bg" style="border-radius:17px;">
                 <!-- The header section of the modal -->
-                <header class="modal-card-head regform-bg">
+                <header class="modal-card-head form-bg">
                     <p class="modal-card-title has-text-weight-semibold">Sign Up</p>
                     <a id="close-reg-modal" class="tag is-delete is-rounded" aria-label="close"></a>
                 </header>
@@ -41,7 +41,7 @@
                 <!-- Sign up form -->
                 <form method="post" action="register">
                     <!-- The main content section of the modal -->
-                    <section class="modal-card-body regform-bg">                    
+                    <section class="modal-card-body form-bg">                    
                         <!-- The input fields for first name and last name -->
                         <div class="columns">
                             <div class="column">
@@ -112,7 +112,7 @@
                     </section>                  
 
                     <!-- The footer section of the modal with sign up button -->
-                    <footer class="modal-card-foot regform-bg">
+                    <footer class="modal-card-foot form-bg">
                         <button class="button is-block is-success is-medium is-fullwidth" id="signup-btn" disabled>Sign Up</button>
                     </footer>
                 </form>
