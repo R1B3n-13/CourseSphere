@@ -2,7 +2,7 @@ package com.coursesphere.main;
 
 /**
  *
- * @author nebir
+ * @author Sadik Al Barid
  */
 
 // Class for course title and subject name

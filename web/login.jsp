@@ -43,9 +43,9 @@
                     <!-- Login form column -->
                     <div class="column">
                         <label class="is-flex is-align-items-center mb-2">
-                            <img src="${pageContext.request.contextPath}/resources/images/logo.png" alt="Logo">
-                            <p class="has-text-dark has-text-weight-bold is-size-2">Course</p>
-                            <p class="has-text-success-dark has-text-weight-bold is-size-4">Sphere</p>
+                            <img src="${pageContext.request.contextPath}/resources/images/logo.png" width="47" height="47" alt="Logo">
+                            <p class="has-text-dark has-text-weight-bold is-size-3">Course</p>
+                            <p class="has-text-success-dark has-text-weight-bold is-size-5">Sphere</p>
                         </label>
 
                         <!-- Sign in form -->
@@ -105,8 +105,8 @@
                     <!-- Image column -->
                     <div class="column has-text-centered">
                         <!-- Image related to registration -->
-                        <figure class="pt-4">
-                            <img src="${pageContext.request.contextPath}/resources/images/add-user.png" alt="log in image">
+                        <figure>
+                            <img src="${pageContext.request.contextPath}/resources/images/add-user.png" width="230" alt="log in image">
                         </figure>
 
                         <!-- Button to open registration modal -->
@@ -116,7 +116,7 @@
                                 <% session.removeAttribute("status"); %>
                             </c:when>    
                             <c:otherwise>
-                                <button id="open-reg-modal" class="button is-success">Create new account</button>
+                                <button id="open-reg-modal" class="button is-success mt-1">Create new account</button>
                             </c:otherwise>
                         </c:choose>
                     </div>

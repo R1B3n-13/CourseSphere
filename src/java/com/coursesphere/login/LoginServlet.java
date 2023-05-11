@@ -44,6 +44,18 @@ public class LoginServlet extends HttpServlet {
         PreparedStatement stmt = null;
         HttpSession session = null;
 
+        // Delete the login token cookie
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("loginToken")) {
+                    cookie.setMaxAge(0);
+                    response.addCookie(cookie);
+                    break;
+                }
+            }
+        }
+
         try {
             // Load PostgreSQL JDBC driver
             Class.forName("org.postgresql.Driver");
@@ -99,18 +111,6 @@ public class LoginServlet extends HttpServlet {
                 // If the session is not null, invalidate it
                 if (session != null) {
                     session.invalidate();
-                }
-
-                // Delete the login token cookie
-                Cookie[] cookies = request.getCookies();
-                if (cookies != null) {
-                    for (Cookie cookie : cookies) {
-                        if (cookie.getName().equals("loginToken")) {
-                            cookie.setMaxAge(0);
-                            response.addCookie(cookie);
-                            break;
-                        }
-                    }
                 }
 
                 // if the credentials are incorrect, set the status to "failed" in the session and redirect to the login page

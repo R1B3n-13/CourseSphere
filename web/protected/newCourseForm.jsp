@@ -35,7 +35,7 @@
                 </header>
 
                 <!-- create course form -->
-                <form id="create-course-form" method="post" action="create">
+                <form id="create-course-form" method="post" action="${pageContext.request.contextPath}/create">
                     <!-- The main content section of the modal -->
                     <section class="modal-card-body form-bg">                    
 

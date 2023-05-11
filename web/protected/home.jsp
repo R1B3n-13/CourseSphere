@@ -155,7 +155,7 @@
             </div>
         </nav>
 
-        <section class="hero is-success is-fullheight">
+        <section class="hero is-fullheight">
             <div class="hero-body is-align-items-stretch">
                 <div class="container m-0">
                     <div class="columns is-multiline">
