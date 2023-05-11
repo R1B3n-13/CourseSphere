@@ -157,11 +157,11 @@
 
         <section class="hero is-fullheight">
             <div class="hero-body is-align-items-stretch">
-                <div class="container m-0">
+                <div class="container is-fluid m-0">
                     <div class="columns is-multiline">
                         <% for (CourseInfo ci : courseInfos) { %>
 
-                        <div class="column is-one-quarter">
+                        <div class="column is-one-fifth">
                             <div class="card custom-card has-text-centered mr-5">
                                 <div class="card-content has-text-white p-1">
                                     <div class="content" title="<%= ci.title %>">
