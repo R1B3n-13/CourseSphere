@@ -42,6 +42,15 @@ body {
     box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2);
 }
 
+/*Global style for any card*/
+.card {
+    cursor: pointer;
+}
+
+.card:hover{
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
 /*Custom style for the name acronym card*/
 .navbar-end .card {
     border-radius:50%;
@@ -51,5 +60,33 @@ body {
     background-color:#00B594;
     width:40px;
     height:40px;
+}
+
+.custom-card .card-content {
+    background: #36474F;
+    height: 30px;
+    overflow: hidden;
+}
+
+.custom-card .card-content .content {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+}
+
+.custom-card .card-content .content:hover:before::after {
+    content: attr(title);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    padding: 8px;
+    white-space: pre-wrap;
+    max-width: 300px;
+    text-align: center;
 }
 

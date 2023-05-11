@@ -55,12 +55,13 @@ public class RegistrationServlet extends HttpServlet {
             conn = DriverManager.getConnection(url, user, password);
 
             // Prepare the SQL statement for inserting a new user into the database
-            stmt1 = conn.prepareStatement("INSERT INTO users(fname, lname, uname, email, pwd) VALUES (?, ?, ?, ?, ?)");
+            stmt1 = conn.prepareStatement("INSERT INTO users(fname, lname, uname, email, pwd, role) VALUES (?, ?, ?, ?, ?, ?)");
             stmt1.setString(1, fname);
             stmt1.setString(2, lname);
             stmt1.setString(3, uname);
             stmt1.setString(4, email);
             stmt1.setString(5, pwd);
+            stmt1.setString(6, role);
 
             // Prepare the SQL statement for inserting a new login token into the database
             stmt2 = conn.prepareStatement("INSERT INTO login_tokens (uname, utoken) VALUES (?, ?)");

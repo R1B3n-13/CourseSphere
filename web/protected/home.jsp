@@ -4,10 +4,19 @@
     Author     : Sadik Al Barid
 --%>
 
+<%@ page import="com.coursesphere.main.CourseInfo" %>
+<%@ page import="com.coursesphere.main.FetchCourseDetails" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <% 
   String uname = (String)session.getAttribute("uname");
   String fname = (String)session.getAttribute("fname");
   String lname = (String)session.getAttribute("lname");
+  
+  List<CourseInfo> courseInfos = new ArrayList<>();
+  if(uname.equals("admin")) {
+    courseInfos = FetchCourseDetails.getCourseNames();
+  }
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -115,7 +124,7 @@
                     <div class="dropdown is-right">
                         <div class="dropdown-trigger">
                             <div class="card m-1" style="cursor: pointer;" aria-haspopup="true" aria-controls="dropdown-menu">
-                                <p class="has-text-centered has-text-light is-size-5" style="cursor: pointer;">
+                                <p class="has-text-centered has-text-light is-size-5">
                                     <%= Character.toUpperCase(fname.charAt(0)) %>
                                 </p>
                             </div>
@@ -146,9 +155,37 @@
             </div>
         </nav>
 
-        <section class="hero is-fullheight">
-            <div class="hero-body">
+        <section class="hero is-success is-fullheight">
+            <div class="hero-body is-align-items-stretch">
+                <div class="container m-0">
+                    <div class="columns is-multiline">
+                        <% for (CourseInfo ci : courseInfos) { %>
 
+                        <div class="column is-one-quarter">
+                            <div class="card custom-card has-text-centered mr-5">
+                                <div class="card-content has-text-white p-1">
+                                    <div class="content" title="<%= ci.title %>">
+                                        <p> <%= ci.title %> </p>
+                                    </div>
+                                </div>
+
+                                <div class="card-content has-text-white p-1">                        
+                                    <div class="content" title="<%= ci.subject %>">
+                                        <p class="is-size-7">  <%= ci.subject %> </p>
+                                    </div>
+                                </div>
+
+                                <div class="card-image">
+                                    <figure class="image is-4by3">
+                                        <img src="${pageContext.request.contextPath}/resources/images/courseCard.jpg" alt="card image">
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+
+                        <% } %>
+                    </div>
+                </div>
             </div>
         </section>                          
 

@@ -54,8 +54,8 @@
 
                     <!-- The footer section of the modal with sign up button -->
                     <footer class="modal-card-foot is-flex-direction-row-reverse form-bg">
-                        <a class="has-text-info-dark has-text-weight-medium" onclick="document.getElementById('create-course-form').submit()">Create</a>
-                        <a id="close-course-form" class="has-text-grey has-text-weight-medium mr-3">Cancel</a>                        
+                        <button class="button is-small has-text-info-dark has-text-weight-medium" type="submit">Create</button>
+                        <button id="close-course-form" class="button is-small has-text-grey has-text-weight-medium mr-3" type="button">Cancel</button>                        
                     </footer>
                 </form>
             </div>
