@@ -1,3 +1,8 @@
+/*
+ Document   : js file for the homepage and create course form.
+ Created on : May 12, 2023, 4:32:50 PM
+ Author     : Sadik Al Barid
+ */
 
 // Function to add event listenr in navbar hamburger menu
 document.addEventListener('DOMContentLoaded', () => {
@@ -64,5 +69,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Event listener to close the form when the close button is clicked
     closeCourseForm.addEventListener('click', closeCourseFormFunc);
+});
+
+// Use select2 for the teacher select option
+$(document).ready(function () {
+    $('#teacher-select').select2({
+        placeholder: '-- Assign a teacher --',
+        width: "100%"
+    });
 });
 

@@ -9,4 +9,5 @@ package com.coursesphere.main;
 public class CourseInfo {
     public String title;
     public String subject;
+    public String teacher;
 }

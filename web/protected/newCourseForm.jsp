@@ -4,6 +4,17 @@
     Author     : nebir
 --%>
 
+<%@ page import="com.coursesphere.main.TeacherInfo" %>
+<%@ page import="com.coursesphere.main.FetchCourseDetails" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<% 
+    List<TeacherInfo> teacherInfos = new ArrayList<>();
+    if(role.equals("admin")) {
+        teacherInfos = FetchCourseDetails.getTeacherInfos();
+    }
+%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -21,7 +32,11 @@
 
         <!-- Import Bulma CSS framework -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" 
-              onerror="this.onerror=null;this.href='${pageContext.request.contextPath}/resources/css/bulma.min.css';"> 
+              onerror="this.onerror=null;this.href='${pageContext.request.contextPath}/resources/css/bulma.min.css';">
+
+        <!--Import select2 CSS-->
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"
+              onerror="this.onerror=null;this.href='${pageContext.request.contextPath}/resources/css/select2.min.css';">
     </head>
 
     <body>
@@ -49,7 +64,16 @@
                         <div class="field">
                             <input class="input" type="text" name="subject" id="subject" placeholder="Subject"
                                    required oninvalid="this.setCustomValidity('Please enter subject name')" oninput="this.setCustomValidity('')">
-                        </div>                        
+                        </div>
+
+                        <!--Teacher select option-->
+                        <select id="teacher-select" name="teacher_id" 
+                                required oninvalid="this.setCustomValidity('Please assign a teacher')" oninput="this.setCustomValidity('')">
+                            <option value=""></option>
+                            <% for (TeacherInfo ti : teacherInfos) { %>
+                            <option value="<%= ti.id %>"><%= ti.name %></option>
+                            <% } %>
+                        </select>
                     </section>                  
 
                     <!-- The footer section of the modal with sign up button -->
@@ -60,5 +84,11 @@
                 </form>
             </div>
         </div>
+        <!--Link the jquery JS script-->
+        <script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+
+        <!--Link the select2 JS script-->
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/select2.min.js"></script>       
     </body>
 </html>

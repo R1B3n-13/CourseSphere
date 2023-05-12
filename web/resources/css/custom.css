@@ -62,12 +62,12 @@ body {
     height:40px;
 }
 
+/*Custom style for the course card*/
 .custom-card .card-content {
     background: #36474F;
     height: 30px;
     overflow: hidden;
 }
-
 .custom-card .card-content .content {
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -76,7 +76,6 @@ body {
     text-overflow: ellipsis;
     position: relative;
 }
-
 .custom-card .card-content .content:hover:before::after {
     content: attr(title);
     position: absolute;
@@ -89,4 +88,3 @@ body {
     max-width: 300px;
     text-align: center;
 }
-

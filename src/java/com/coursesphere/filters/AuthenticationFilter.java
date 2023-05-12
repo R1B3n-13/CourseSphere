@@ -118,13 +118,14 @@ public class AuthenticationFilter implements Filter {
                 session.setAttribute("uname", rs.getString("uname"));
 
                 // Get first name of the user
-                query = "SELECT fname, lname FROM users WHERE uname = ?";
+                query = "SELECT fname, lname, role FROM users WHERE uname = ?";
                 stmt = conn.prepareStatement(query);
                 stmt.setString(1, username);
                 rs = stmt.executeQuery();
                 if (rs.next()) {
                     session.setAttribute("fname", rs.getString("fname"));
                     session.setAttribute("lname", rs.getString("lname"));
+                    session.setAttribute("role", rs.getString("role"));
                 }
             }
 

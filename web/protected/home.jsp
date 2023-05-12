@@ -9,14 +9,15 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 <% 
-  String uname = (String)session.getAttribute("uname");
-  String fname = (String)session.getAttribute("fname");
-  String lname = (String)session.getAttribute("lname");
+    String uname = (String)session.getAttribute("uname");
+    String fname = (String)session.getAttribute("fname");
+    String lname = (String)session.getAttribute("lname");
+    String role = (String)session.getAttribute("role");
   
-  List<CourseInfo> courseInfos = new ArrayList<>();
-  if(uname.equals("admin")) {
-    courseInfos = FetchCourseDetails.getCourseNames();
-  }
+    List<CourseInfo> courseInfos = new ArrayList<>();
+    if(role.equals("admin")) {
+        courseInfos = FetchCourseDetails.getCourseInfos();
+    }
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -162,10 +163,10 @@
                         <% for (CourseInfo ci : courseInfos) { %>
 
                         <div class="column is-one-fifth">
-                            <div class="card custom-card has-text-centered mr-5">
+                            <div class="card custom-card has-text-centered mr-5 mb-5">
                                 <div class="card-content has-text-white p-1">
                                     <div class="content" title="<%= ci.title %>">
-                                        <p> <%= ci.title %> </p>
+                                        <p class="has-text-weight-semibold"> <%= ci.title %> </p>
                                     </div>
                                 </div>
 
@@ -175,8 +176,14 @@
                                     </div>
                                 </div>
 
+                                <div class="card-content has-text-white p-0">                        
+                                    <div class="content" title="<%= ci.teacher %>">
+                                        <p class="is-size-6">  <%= ci.teacher %> </p>
+                                    </div>
+                                </div>
+
                                 <div class="card-image">
-                                    <figure class="image is-4by3">
+                                    <figure class="image is-3by2">
                                         <img src="${pageContext.request.contextPath}/resources/images/courseCard.jpg" alt="card image">
                                     </figure>
                                 </div>

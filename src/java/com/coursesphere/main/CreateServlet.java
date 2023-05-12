@@ -28,6 +28,7 @@ public class CreateServlet extends HttpServlet {
         // Retrieve form data from the request
         String title = request.getParameter("course-title");
         String subject = request.getParameter("subject");
+        int teacher_id = Integer.parseInt(request.getParameter("teacher_id"));
 
         // Database credentials
         String url = "jdbc:postgresql://localhost:5432/CourseSphereDB";
@@ -46,9 +47,10 @@ public class CreateServlet extends HttpServlet {
             conn = DriverManager.getConnection(url, user, password);
 
             // Prepare the SQL statement for inserting title and subject name
-            stmt = conn.prepareStatement("INSERT INTO courses(title, subject) VALUES (?, ?)");
+            stmt = conn.prepareStatement("INSERT INTO courses(title, subject, teacher_id) VALUES (?, ?, ?)");
             stmt.setString(1, title);
             stmt.setString(2, subject);
+            stmt.setInt(3, teacher_id);
 
             // Execute the query
             stmt.execute();
