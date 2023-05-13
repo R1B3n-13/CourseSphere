@@ -71,11 +71,16 @@ document.addEventListener('DOMContentLoaded', function () {
     closeCourseForm.addEventListener('click', closeCourseFormFunc);
 });
 
-// Use select2 for the teacher select option
+// This function executes as soon as the dom loads
 $(document).ready(function () {
+    // Use select2 for the teacher select option
     $('#teacher-select').select2({
         placeholder: '-- Assign a teacher --',
         width: "100%"
     });
+
+    let section = $("#data").data("param1");
+    // Change the URL without reloading the page
+    history.replaceState(null, "", "/" + window.location.pathname.split('/')[1] + "/" + section);
 });
 

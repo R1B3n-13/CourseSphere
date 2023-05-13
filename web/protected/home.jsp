@@ -247,6 +247,9 @@
             </section>
         </c:if>
 
+        <!--Div tag for passing the section data stored in the session scope to the script-->
+        <div id="data" data-param1="${sessionScope.section}"></div>
+
         <!-- Include the JavaScript file for home page -->
         <script src="${pageContext.request.contextPath}/resources/js/homePage.js"></script>
     </body>
