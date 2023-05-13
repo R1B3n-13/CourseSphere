@@ -21,6 +21,7 @@
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="newCourseForm.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -30,7 +31,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!-- Set the title of the page -->
-        <title>CourseSphere - manage your courses efficiently</title>
+        <title>CourseSphere - learn with efficiency</title>
 
         <!-- Set the favicon and page icon -->
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.png" type="image/png">
@@ -68,13 +69,47 @@
 
             <div id="navbarMenu" class="navbar-menu has-text-weight-semibold">
                 <div class="navbar-start">
-                    <a class="navbar-item">Home</a>
-                    <a class="navbar-item">Courses</a>
+                    <a href="${pageContext.request.contextPath}/home" class="navbar-item">
+                        <span class="icon is-small mr-1">
+                            <i class="fas fa-house-user"></i>
+                        </span>
+                        Home
+                    </a>
+                    <a href="${pageContext.request.contextPath}/courses" class="navbar-item">
+                        <span class="icon is-small mr-1">
+                            <i class="fas fa-book"></i>
+                        </span>
+                        Courses
+                    </a>
+                    <a class="navbar-item">
+                        <span class="icon is-small mr-1">
+                            <i class="fas fa-clipboard"></i>
+                        </span>
+                        Dashboard
+                    </a>
 
                     <div class="navbar-item has-dropdown is-hoverable">
-                        <a class="navbar-link">More</a>
+                        <a class="navbar-link">
+                            <span class="icon is-small mr-1">
+                                <i class="fas fa-circle-plus"></i>
+                            </span>
+                            More
+                        </a>
 
                         <div class="navbar-dropdown is-boxed has-text-weight-medium">
+                            <a class="navbar-item">
+                                <span class="icon is-small mr-1">
+                                    <i class="fas fa-circle-info"></i>
+                                </span>
+                                About
+                            </a>
+                            <a class="navbar-item">
+                                <span class="icon is-small mr-1">
+                                    <i class="fas fa-blog"></i>
+                                </span>
+                                Blog
+                            </a>
+
                             <a class="navbar-item">                                    
                                 <span class="icon is-small mr-2">
                                     <i class="fas fa-clipboard-question"></i>
@@ -83,9 +118,15 @@
                             </a>
                             <a class="navbar-item">                                    
                                 <span class="icon is-small mr-2">
-                                    <i class="fas fa-circle-info"></i>
+                                    <i class="fas fa-star"></i>
                                 </span>
-                                About
+                                Reviews
+                            </a> 
+                            <a class="navbar-item">                                    
+                                <span class="icon is-small mr-2">
+                                    <i class="fas fa-user-tie"></i>
+                                </span>
+                                Staff
                             </a>                            
                             <a class="navbar-item">                                    
                                 <span class="icon is-small mr-2">
@@ -156,45 +197,55 @@
             </div>
         </nav>
 
-        <section class="hero is-fullheight">
-            <div class="hero-body is-align-items-stretch">
-                <div class="container is-fluid m-0">
-                    <div class="columns is-multiline">
-                        <% for (CourseInfo ci : courseInfos) { %>
+        <c:if test="${sessionScope.section == 'home'}">
+            <section id="home" class="hero is-fullheight">
+                <div class="hero-body is-align-items-stretch">
 
-                        <div class="column is-one-fifth">
-                            <div class="card custom-card has-text-centered mr-5 mb-5">
-                                <div class="card-content has-text-white p-1">
-                                    <div class="content" title="<%= ci.title %>">
-                                        <p class="has-text-weight-semibold"> <%= ci.title %> </p>
+                </div>
+            </section>
+        </c:if>
+
+        <c:if test="${sessionScope.section == 'courses'}">
+            <section id="courses" class="hero is-fullheight">
+                <div class="hero-body is-align-items-stretch">
+                    <div class="container is-fluid m-0">
+                        <div class="columns is-multiline">
+                            <% for (CourseInfo ci : courseInfos) { %>
+
+                            <div class="column is-one-fifth">
+                                <div class="card custom-card has-text-centered mr-5 mb-5">
+                                    <div class="card-content has-text-white p-1">
+                                        <div class="content" title="<%= ci.title %>">
+                                            <p class="has-text-weight-semibold"> <%= ci.title %> </p>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="card-content has-text-white p-1">                        
-                                    <div class="content" title="<%= ci.subject %>">
-                                        <p class="is-size-7">  <%= ci.subject %> </p>
+                                    <div class="card-content has-text-white p-1">                        
+                                        <div class="content" title="<%= ci.subject %>">
+                                            <p class="is-size-7">  <%= ci.subject %> </p>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="card-content has-text-white p-0">                        
-                                    <div class="content" title="<%= ci.teacher %>">
-                                        <p class="is-size-6">  <%= ci.teacher %> </p>
+                                    <div class="card-content has-text-white p-0">                        
+                                        <div class="content" title="<%= ci.teacher %>">
+                                            <p class="is-size-6">  <%= ci.teacher %> </p>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="card-image">
-                                    <figure class="image is-3by2">
-                                        <img src="${pageContext.request.contextPath}/resources/images/courseCard.jpg" alt="card image">
-                                    </figure>
+                                    <div class="card-image">
+                                        <figure class="image is-3by2">
+                                            <img src="${pageContext.request.contextPath}/resources/images/courseCard.jpg" alt="card image">
+                                        </figure>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <% } %>
+                            <% } %>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>                          
+            </section>
+        </c:if>
 
         <!-- Include the JavaScript file for home page -->
         <script src="${pageContext.request.contextPath}/resources/js/homePage.js"></script>

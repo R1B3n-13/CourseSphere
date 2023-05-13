@@ -24,7 +24,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!-- Set the title of the page -->
-        <title>CourseSphere - manage your courses efficiently</title>
+        <title>CourseSphere - learn with efficiency</title>
 
         <!-- Set the favicon and page icon -->
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.png" type="image/png">

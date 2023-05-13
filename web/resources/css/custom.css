@@ -88,3 +88,10 @@ body {
     max-width: 300px;
     text-align: center;
 }
+
+/*Custom homepage bg*/
+#home {
+    background-image: url("../images/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
