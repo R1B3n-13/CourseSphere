@@ -29,7 +29,7 @@ public class FetchCourseDetails {
     static Connection conn = null;
     static PreparedStatement stmt = null;
 
-    static public List<CourseInfo> getCourseInfos() throws ClassNotFoundException, SQLException {
+    static public List<CourseInfo> getCourseInfos(String role, String uname) throws ClassNotFoundException, SQLException {
 
         try {
             // Initialize new array list object
@@ -42,7 +42,13 @@ public class FetchCourseDetails {
             conn = DriverManager.getConnection(url, user, password);
 
             // Prepare the SQL statement for selecting from courses table
-            stmt = conn.prepareStatement("SELECT * FROM users u JOIN teachers t ON u.uname = t.uname JOIN courses c ON t.teacher_id = c.teacher_id;");
+            if (role.equals("admin")) {
+                stmt = conn.prepareStatement("SELECT * FROM users u JOIN teachers t ON u.uname = t.uname JOIN courses c ON t.teacher_id = c.teacher_id;");
+            } else if (role.equals("teacher")) {
+                stmt = conn.prepareStatement("SELECT * FROM users u JOIN teachers t ON u.uname = t.uname "
+                        + "JOIN courses c ON t.teacher_id = c.teacher_id WHERE u.uname = ?");
+                stmt.setString(1, uname);
+            }
 
             // Execute the SQL statement and get the result set
             ResultSet rs = stmt.executeQuery();

@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpSession;
  *
  * @author Sadik Al Barid
  */
-@WebServlet(name = "NavigationServlet", urlPatterns = {"", "/home", "/courses"})
+@WebServlet(name = "NavigationServlet", urlPatterns = {"", "/home", "/courses", "/dashboard"})
 public class NavigationServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -26,10 +26,19 @@ public class NavigationServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         // Set the session attribute according to the url
-        if (url.equals("") || url.equals("/home")) {
-            session.setAttribute("section", "home");
-        }else if (url.equals("/courses")) {
-            session.setAttribute("section", "courses");
+        switch (url) {
+            case "":
+            case "/home":
+                session.setAttribute("section", "home");
+                break;
+            case "/courses":
+                session.setAttribute("section", "courses");
+                break;
+            case "/dashboard":
+                session.setAttribute("section", "dashboard");
+                break;
+            default:
+                break;
         }
         // Send response to home.jsp
         response.sendRedirect("protected/home.jsp");

@@ -13,11 +13,14 @@
     String fname = (String)session.getAttribute("fname");
     String lname = (String)session.getAttribute("lname");
     String role = (String)session.getAttribute("role");
-  
-    List<CourseInfo> courseInfos = new ArrayList<>();
-    if(role.equals("admin")) {
-        courseInfos = FetchCourseDetails.getCourseInfos();
-    }
+    
+    // Course info for courses page
+    List<CourseInfo> courseInfos1 = new ArrayList<>();
+    courseInfos1 = FetchCourseDetails.getCourseInfos("admin", uname);
+    
+    // Course info for dashboard
+    List<CourseInfo> courseInfos2 = new ArrayList<>();
+    courseInfos2 = FetchCourseDetails.getCourseInfos(role, uname);
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -81,7 +84,7 @@
                         </span>
                         Courses
                     </a>
-                    <a class="navbar-item">
+                    <a href="${pageContext.request.contextPath}/dashboard" class="navbar-item">
                         <span class="icon is-small mr-1">
                             <i class="fas fa-clipboard"></i>
                         </span>
@@ -139,24 +142,27 @@
                 </div>
 
                 <div class="navbar-end is-align-items-center">
-                    <div class="dropdown is-right">
-                        <div class="dropdown-trigger">
-                            <div class="image is-32x32 mr-5" style="cursor: pointer;" aria-haspopup="true" aria-controls="dropdown-menu">
-                                <img src="${pageContext.request.contextPath}/resources/images/plus.png">
-                            </div>
-                        </div>
 
-                        <div class="dropdown-menu" id="dropdown-menu" role="menu">
-                            <div class="dropdown-content has-text-weight-medium">
-                                <a id="open-course-form" class="dropdown-item m-1">
-                                    <span class="icon is-small mr-1">
-                                        <i class="fas fa-plus"></i>
-                                    </span>
-                                    Create course
-                                </a>
+                    <c:if test="${!role.equals('teacher')}">
+                        <div class="dropdown is-right">
+                            <div class="dropdown-trigger">
+                                <div class="image is-32x32 mr-5" style="cursor: pointer;" aria-haspopup="true" aria-controls="dropdown-menu">
+                                    <img src="${pageContext.request.contextPath}/resources/images/plus.png">
+                                </div>
+                            </div>
+
+                            <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                                <div class="dropdown-content has-text-weight-medium">
+                                    <a id="open-course-form" class="dropdown-item m-1">
+                                        <span class="icon is-small mr-1">
+                                            <i class="fas fa-plus"></i>
+                                        </span>
+                                        Create course
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </c:if>
 
                     <figure class="image is-32x32 mr-5" style="cursor: pointer;">
                         <span class="badge is-danger">0</span>
@@ -205,13 +211,23 @@
             </section>
         </c:if>
 
-        <c:if test="${sessionScope.section == 'courses'}">
+        <c:if test="${sessionScope.section == 'courses' or sessionScope.section == 'dashboard'}">
             <section id="courses" class="hero is-fullheight">
                 <div class="hero-body is-align-items-stretch">
                     <div class="container is-fluid m-0">
                         <div class="columns is-multiline">
-                            <% for (CourseInfo ci : courseInfos) { %>
 
+                            <% List<CourseInfo> courseInfos = new ArrayList<>(); %>
+                            <c:choose>
+                                <c:when test="${sessionScope.section == 'courses'}">
+                                    <% courseInfos = courseInfos1; %>
+                                </c:when>    
+                                <c:when test="${sessionScope.section == 'dashboard'}">
+                                    <% courseInfos = courseInfos2; %>
+                                </c:when>
+                            </c:choose>
+
+                            <% for (CourseInfo ci : courseInfos) { %>
                             <div class="column is-one-fifth">
                                 <div class="card custom-card has-text-centered mr-5 mb-5">
                                     <div class="card-content has-text-white p-1">
