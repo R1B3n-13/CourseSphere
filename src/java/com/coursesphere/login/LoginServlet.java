@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet {
         // Initialize database connection, prepared statement and session
         Connection conn = null;
         PreparedStatement stmt = null;
-        HttpSession session = null;
+        HttpSession session;
 
         // Delete the login token cookie
         Cookie[] cookies = request.getCookies();
@@ -54,6 +54,13 @@ public class LoginServlet extends HttpServlet {
                     break;
                 }
             }
+        }
+
+        // Get the current session
+        session = request.getSession(false);
+        // If the session is not null, invalidate it
+        if (session != null) {
+            session.invalidate();
         }
 
         try {
@@ -106,13 +113,6 @@ public class LoginServlet extends HttpServlet {
                     response.sendRedirect("login.jsp");
                 }
             } else {
-                // Get the current session
-                session = request.getSession(false);
-                // If the session is not null, invalidate it
-                if (session != null) {
-                    session.invalidate();
-                }
-
                 // if the credentials are incorrect, set the status to "failed" in the session and redirect to the login page
                 session = request.getSession();
                 session.setAttribute("status", "failed");
