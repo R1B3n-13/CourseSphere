@@ -26,6 +26,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="newCourseForm.jsp" %>
+<%@ include file="courseModal.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -228,8 +229,8 @@
                             </c:choose>
 
                             <% for (CourseInfo ci : courseInfos) { %>
-                            <div class="column is-one-fifth">
-                                <div class="card custom-card has-text-centered mr-5 mb-5">
+                            <div class="column is-one-fifth" onclick="shareCourseData('<%= ci.title %>', '<%= ci.subject %>', '<%= ci.teacher %>')">
+                                <div class="card open-course-card custom-card has-text-centered mr-5 mb-5">
                                     <div class="card-content has-text-white p-1">
                                         <div class="content" title="<%= ci.title %>">
                                             <p class="has-text-weight-semibold"> <%= ci.title %> </p>
@@ -255,7 +256,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <% } %>
                         </div>
                     </div>

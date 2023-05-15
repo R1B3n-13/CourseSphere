@@ -46,15 +46,15 @@ document.addEventListener('DOMContentLoaded', function () {
 // Function to add event listenr in create course menu item
 document.addEventListener('DOMContentLoaded', function () {
     // Get the button that opens the form
-    let openCourseForm = document.querySelector('[id="open-course-form"]');
+    let openCourseForm = document.querySelector('#open-course-form');
 
     // Get the button that closes the form
-    let closeCourseForm = document.querySelector('[id="close-course-form"]');
+    let closeCourseForm = document.querySelector('#close-course-form');
 
     // Get the new corse form modal element
-    let courseForm = document.querySelector('[id=course-form]');
+    let courseForm = document.querySelector('#course-form');
 
-    // Function to open the fomr
+    // Function to open the form
     function openCourseFormFunc() {
         courseForm.classList.add('is-active');
     }
@@ -71,6 +71,36 @@ document.addEventListener('DOMContentLoaded', function () {
     closeCourseForm.addEventListener('click', closeCourseFormFunc);
 });
 
+// Function to add event listenr in course card
+document.addEventListener('DOMContentLoaded', function () {
+    // Get the button that opens the card
+    let openCourseCard = Array.prototype.slice.call(document.querySelectorAll('.open-course-card'), 0);
+
+    // Get the button that closes the card
+    let closeCourseCard = document.querySelector('#close-course-card');
+
+    // Get the corse card modal element
+    let courseCard = document.querySelector('#course-card');
+
+    // Function to open the card
+    function openCourseCardFunc() {
+        courseCard.classList.add('is-active');
+    }
+
+    // Function to close the card
+    function closeCourseCardFunc() {
+        courseCard.classList.remove('is-active');
+    }
+
+    // Event listener to open the card when the button is clicked
+    openCourseCard.forEach(el => {
+        el.addEventListener('click', openCourseCardFunc);
+    });
+
+    // Event listener to close the card when the close button is clicked
+    closeCourseCard.addEventListener('click', closeCourseCardFunc);
+});
+
 // This function executes as soon as the dom loads
 $(document).ready(function () {
     // Use select2 for the teacher select option
@@ -83,4 +113,8 @@ $(document).ready(function () {
     // Change the URL without reloading the page
     history.replaceState(null, "", "/" + window.location.pathname.split('/')[1] + "/" + section);
 });
+
+function shareCourseData(title, subject, teacher) {
+    document.getElementById("course-card-title").innerHTML = title;
+}
 

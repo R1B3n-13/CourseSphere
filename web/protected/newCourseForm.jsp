@@ -76,7 +76,7 @@
                         </select>
                     </section>                  
 
-                    <!-- The footer section of the modal with sign up button -->
+                    <!-- The footer section of the modal with cancel and submit button -->
                     <footer class="modal-card-foot is-flex-direction-row-reverse form-bg">
                         <button class="button is-small has-text-info-dark has-text-weight-medium" type="submit">Create</button>
                         <button id="close-course-form" class="button is-small has-text-grey has-text-weight-medium mr-3" type="button">Cancel</button>                        

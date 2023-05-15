@@ -42,32 +42,36 @@
                 <div class="columns is-vcentered is-centered has-text-centered-mobile is-variable is-5">
                     <!-- Login form column -->
                     <div class="column">
+                        <!-- Logo -->
                         <label class="is-flex is-align-items-center mb-2">
                             <img src="${pageContext.request.contextPath}/resources/images/logo.png" width="47" height="47" alt="Logo">
-                            <p class="has-text-dark has-text-weight-bold is-size-3">Course</p>
-                            <p class="has-text-success-dark has-text-weight-bold is-size-5">Sphere</p>
+                            <p class="has-text-light has-text-weight-bold is-size-3">Course</p>
+                            <p class="has-text-success has-text-weight-bold is-size-5">Sphere</p>                            
                         </label>
+
+                        <h2 class="subtitle has-text-grey-light is-6 mb-2 mt-3">Sign in to your account to continue</h2>
 
                         <!-- Sign in form -->
                         <form method="post" action="login">
                             <!-- Username input field -->
-                            <h2 class="title has-text-weight-semibold is-4 mb-2 mt-4">Sign in</h2>
-                            <div class="field">
-                                <p class="control has-icons-left">
-                                    <input class="input" type="text" name="username" placeholder="Username" 
+                            <div class="field mt-5">
+                                <label class="label has-text-grey-light">Username</label>
+                                <p class="control has-icons-left">                                   
+                                    <input class="input is-link custom-input has-text-grey-lighter" type="text" name="username" placeholder="Username" 
                                            required oninvalid="this.setCustomValidity('Please enter your user name')" oninput="this.setCustomValidity('')">
-                                    <span class="icon is-small is-left">
+                                    <span class="icon has-text-grey is-small is-left">
                                         <i class="fas fa-user"></i>
                                     </span>
                                 </p>
                             </div>
 
                             <!-- Password input field -->
-                            <div class="field">
+                            <div class="field mt-4">
+                                <label class="label has-text-grey-light">Password</label>
                                 <p class="control has-icons-left">
-                                    <input class="input" type="password" name="password" placeholder="Password" 
+                                    <input class="input is-link custom-input has-text-grey-lighter" type="password" name="password" placeholder="Password" 
                                            required oninvalid="this.setCustomValidity('Please enter your password')" oninput="this.setCustomValidity('')">
-                                    <span class="icon is-small is-left">
+                                    <span class="icon has-text-grey is-small is-left">
                                         <i class="fas fa-lock"></i>
                                     </span>
 
@@ -84,41 +88,29 @@
                             </div>
 
                             <!-- Remember me checkbox -->
-                            <div class="field">
+                            <div class="field mt-3">
                                 <p class="control">
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="rememberMe">
+                                    <label class="checkbox has-text-grey-lighter">
+                                        <input class="checkbox" type="checkbox" name="rememberMe">
                                         Remember me for 30 days
                                     </label>
                                 </p>
                             </div>
 
                             <!-- Log in button -->
-                            <div class="field">
+                            <div class="field mt-5">
                                 <p class="control">
-                                    <button class="button is-link">Log in</button>
+                                    <button class="button is-link is-rounded">Sign in</button>
                                 </p>
                             </div>
                         </form>
-                    </div>
-
-                    <!-- Image column -->
-                    <div class="column has-text-centered">
-                        <!-- Image related to registration -->
-                        <figure>
-                            <img src="${pageContext.request.contextPath}/resources/images/add-user.png" width="230" alt="log in image">
-                        </figure>
 
                         <!-- Button to open registration modal -->
-                        <c:choose>
-                            <c:when test="${sessionScope.status == 'failed' or sessionScope.status == 'error'}">
-                                <button id="open-reg-modal" class="button is-success mt-4">Create new account</button>
-                                <% session.removeAttribute("status"); %>
-                            </c:when>    
-                            <c:otherwise>
-                                <button id="open-reg-modal" class="button is-success mt-1">Create new account</button>
-                            </c:otherwise>
-                        </c:choose>
+                        <label class="label has-text-centered has-text-weight-medium has-text-white mt-6">
+                            Not registered? 
+                            <a id="open-reg-modal" class="has-text-link"> Create account</a>
+                        </label>
+                        <% session.removeAttribute("status"); %>  
                     </div>
                 </div>
             </div>

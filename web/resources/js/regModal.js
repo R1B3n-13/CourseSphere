@@ -5,16 +5,16 @@
  */
 
 // Get the button that opens the modal
-let openRegModalButton = document.querySelector('[id="open-reg-modal"]');
+let openRegModalButton = document.querySelector('#open-reg-modal');
 
 // Get the modal element
-let regModal = document.querySelector('[id=reg-modal]');
+let regModal = document.querySelector('#reg-modal');
 
 // Get the button that closes the modal
-let closeRegModalButton = document.querySelector('[id="close-reg-modal"]');
+let closeRegModalButton = document.querySelector('#close-reg-modal');
 
 // get the sign-up button
-let signup = document.querySelector('[id="signup-btn"]');
+let signup = document.querySelector('#signup-btn');
 
 // username, password, email field flags and the function for sign up button status
 let nFlag = uFlag = pFlag = eFlag = true;

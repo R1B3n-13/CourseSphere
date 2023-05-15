@@ -12,27 +12,33 @@ body {
     font-family: 'Noto Sans', sans-serif;
 }
 
+/*Custom styles for input fields*/
+.custom-input {
+  background-color: #1E2E3D;
+}
+.custom-input::placeholder {
+  color: #4F5B62;
+}
+
 /*Background styles for the login page section.*/
 .loginpage-bg {
-    background: #232526; /*fallback for old browsers*/
-    background: -webkit-linear-gradient(to right, #414345, #232526); /*Chrome 10-25, Safari 5.1-6*/
-    background: linear-gradient(to right, #414345, #232526); /*W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+*/
+    background: #1E2E3D; /*fallback for old browsers*/
+    background: -webkit-linear-gradient(to right, #1E2E3D, #141E28); /*Chrome 10-25, Safari 5.1-6*/
+    background: linear-gradient(to right, #1E2E3D, #141E28); /*W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+*/
 }
 
 /*Background styles for the login form.*/
 .loginform-bg {
-    background: #ADA996; /*fallback for old browsers*/
-    background: -webkit-linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996); /*Chrome 10-25, Safari 5.1-6*/
-    background: linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996); /*W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+*/
-    max-width: 600px;
+    background: #273444;
+    min-width: 480px;
     padding: 3rem;
-    border-radius: 17px;
+    border-radius: 10px;
     box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
 }
 
 /*Background styles for the registration form.*/
 .form-bg {
-    background: #E9E9E9;
+    background: #273444;
     max-width: 500px;
     padding: 1rem;
 }
@@ -94,4 +100,24 @@ body {
     background-image: url("../images/background.jpg");
     background-size: cover;
     background-repeat: no-repeat;
+}
+
+/*Custom style for the course card*/
+#course-card {
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 9999;
+}
+#course-card .modal-card {
+    border-radius: 4px;
+    width: 100%;
+    height: 100%;
+    max-width: calc(100vw - 10rem);
+    max-height: calc(100vh - 6rem);
+    overflow-y: auto;
 }

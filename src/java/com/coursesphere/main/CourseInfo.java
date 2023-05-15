@@ -5,7 +5,7 @@ package com.coursesphere.main;
  * @author Sadik Al Barid
  */
 
-// Class for course title and subject name
+// Class for course details
 public class CourseInfo {
     public String title;
     public String subject;
