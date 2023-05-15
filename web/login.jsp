@@ -98,17 +98,21 @@
                             </div>
 
                             <!-- Log in button -->
-                            <div class="field mt-5">
+                            <div class="field mt-4">
                                 <p class="control">
                                     <button class="button is-link is-rounded">Sign in</button>
                                 </p>
                             </div>
+                            
+                            <label class="label has-text-weight-medium has-text-white mt-4">
+                            <a class="has-text-link"> Forgot password? </a>
+                        </label>
                         </form>
 
                         <!-- Button to open registration modal -->
                         <label class="label has-text-centered has-text-weight-medium has-text-white mt-6">
                             Not registered? 
-                            <a id="open-reg-modal" class="has-text-link"> Create account</a>
+                            <a id="open-reg-modal" class="has-text-link"> Create account </a>
                         </label>
                         <% session.removeAttribute("status"); %>  
                     </div>

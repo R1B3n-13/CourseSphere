@@ -64,27 +64,27 @@
                         </div>
 
                         <!-- The input field for email -->
-                        <div class="field">
+                        <div class="field mt-5">
                             <input class="input is-link custom-input has-text-grey-lighter" type="email" name="email" id="email" placeholder="Email address" oninput="checkEmail()">
                             <!-- The email validation tag -->
                             <p id="email-error" class="help is-hidden has-text-danger"></p>
                         </div>                        
 
                         <!-- The input field for password -->
-                        <div class="field">
+                        <div class="field mt-5">
                             <input class="input is-link custom-input has-text-grey-lighter" type="password" name="pwd" id="pwd" oninput="validatePassword()" placeholder="New password">
                         </div>
 
                         <!-- The input field to confirm password -->
-                        <div class="field">
+                        <div class="field mt-5">
                             <input class="input is-link custom-input has-text-grey-lighter" type="password" id="confirmpwd" oninput="validatePassword()" placeholder="Confirm password">
                             <!-- The passwords do not match tag -->
                             <p class="help is-hidden has-text-danger" id="confirmpwd-error">Passwords do not match</p>
                         </div>
 
                         <!-- The radio buttons for the role selection -->
-                        <div class="field is-horizontal">
-                            <div class="field-label is-normal mt-1 mb-3 mr-0">
+                        <div class="field mt-4 is-horizontal">
+                            <div class="field-label is-normal mt-1 mr-0">
                                 <label class="label is-pulled-left has-text-grey-lighter">Role :</label>
                             </div>
                             
@@ -107,7 +107,7 @@
                         </div>
 
                         <!-- The terms and conditions link -->
-                        <p class="has-text-centered has-text-grey-lighter">By clicking Sign Up, you agree to our <a class="has-text-link">Terms & Conditions</a>.</p>
+                        <p class="has-text-centered has-text-grey-lighter mt-5">By clicking Sign Up, you agree to our <a class="has-text-link">Terms & Conditions</a>.</p>
                     </section>                  
 
                     <!-- The footer section of the modal with sign up button -->
