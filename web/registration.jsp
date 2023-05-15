@@ -35,7 +35,7 @@
                 <!-- The header section of the modal -->
                 <header class="modal-card-head form-bg">
                     <p class="modal-card-title has-text-grey-lighter has-text-weight-semibold">Register</p>
-                    <a id="close-reg-modal" class="tag is-delete is-rounded" aria-label="close"></a>
+                    <a id="close-reg-modal" class="delete" aria-label="close"></a>
                 </header>
 
                 <!-- Sign up form -->
