@@ -112,7 +112,7 @@
 
                     <!-- The footer section of the modal with sign up button -->
                     <footer class="modal-card-foot form-bg">
-                        <button class="button is-block is-rounded is-success is-medium is-fullwidth" id="signup-btn" disabled>Sign Up</button>
+                        <button class="button is-block is-rounded is-primary is-medium is-fullwidth" id="signup-btn" disabled>Sign Up</button>
                     </footer>
                 </form>
             </div>

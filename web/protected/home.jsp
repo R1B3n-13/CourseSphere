@@ -56,15 +56,15 @@
         <script src="https://kit.fontawesome.com/75e766e3de.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+        <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <a class="is-flex is-align-items-center ml-3 mr-3" href="${pageContext.request.contextPath}">
                     <img src="${pageContext.request.contextPath}/resources/images/logo.png" width="34" height="34" alt="Logo">
-                    <p class="has-text-dark has-text-weight-bold is-size-4">Course</p>
-                    <p class="has-text-success-dark has-text-weight-bold">Sphere</p>
+                    <p class="has-text-light has-text-weight-bold is-size-4">Course</p>
+                    <p class="has-text-success has-text-weight-bold">Sphere</p>
                 </a>
 
-                <a role="button" class="navbar-burger has-text-left" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+                <a role="button" class="navbar-burger has-text-light has-text-left" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
@@ -73,19 +73,19 @@
 
             <div id="navbarMenu" class="navbar-menu has-text-weight-semibold">
                 <div class="navbar-start">
-                    <a href="${pageContext.request.contextPath}/home" class="navbar-item">
+                    <a href="${pageContext.request.contextPath}/home" class="navbar-item has-text-grey-lighter">
                         <span class="icon is-small mr-1">
                             <i class="fas fa-house-user"></i>
                         </span>
                         Home
                     </a>
-                    <a href="${pageContext.request.contextPath}/courses" class="navbar-item">
+                    <a href="${pageContext.request.contextPath}/courses" class="navbar-item has-text-grey-lighter">
                         <span class="icon is-small mr-1">
                             <i class="fas fa-book"></i>
                         </span>
                         Courses
                     </a>
-                    <a href="${pageContext.request.contextPath}/dashboard" class="navbar-item">
+                    <a href="${pageContext.request.contextPath}/dashboard" class="navbar-item has-text-grey-lighter">
                         <span class="icon is-small mr-1">
                             <i class="fas fa-clipboard"></i>
                         </span>
@@ -93,7 +93,7 @@
                     </a>
 
                     <div class="navbar-item has-dropdown is-hoverable">
-                        <a class="navbar-link">
+                        <a class="navbar-link has-text-grey-lighter">
                             <span class="icon is-small mr-1">
                                 <i class="fas fa-circle-plus"></i>
                             </span>
@@ -101,38 +101,38 @@
                         </a>
 
                         <div class="navbar-dropdown is-boxed has-text-weight-medium">
-                            <a class="navbar-item">
+                            <a class="navbar-item has-text-grey-lighter">
                                 <span class="icon is-small mr-1">
                                     <i class="fas fa-circle-info"></i>
                                 </span>
                                 About
                             </a>
-                            <a class="navbar-item">
+                            <a class="navbar-item has-text-grey-lighter">
                                 <span class="icon is-small mr-1">
                                     <i class="fas fa-blog"></i>
                                 </span>
                                 Blog
                             </a>
 
-                            <a class="navbar-item">                                    
+                            <a class="navbar-item has-text-grey-lighter">                                    
                                 <span class="icon is-small mr-2">
                                     <i class="fas fa-clipboard-question"></i>
                                 </span>
                                 FAQ
                             </a>
-                            <a class="navbar-item">                                    
+                            <a class="navbar-item has-text-grey-lighter">                                    
                                 <span class="icon is-small mr-2">
                                     <i class="fas fa-star"></i>
                                 </span>
                                 Reviews
                             </a> 
-                            <a class="navbar-item">                                    
+                            <a class="navbar-item has-text-grey-lighter">                                    
                                 <span class="icon is-small mr-2">
                                     <i class="fas fa-user-tie"></i>
                                 </span>
                                 Staff
                             </a>                            
-                            <a class="navbar-item">                                    
+                            <a class="navbar-item has-text-grey-lighter">                                    
                                 <span class="icon is-small mr-2">
                                     <i class="fas fa-address-card"></i>
                                 </span>
@@ -152,9 +152,9 @@
                                 </div>
                             </div>
 
-                            <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                            <div class="dropdown-menu" id="dropdown-menu-plus" role="menu">
                                 <div class="dropdown-content has-text-weight-medium">
-                                    <a id="open-course-form" class="dropdown-item m-1">
+                                    <a id="open-course-form" class="dropdown-item has-text-centered has-text-grey-lighter mt-1">
                                         <span class="icon is-small mr-1">
                                             <i class="fas fa-plus"></i>
                                         </span>
@@ -167,7 +167,7 @@
 
                     <figure class="image is-32x32 mr-5" style="cursor: pointer;">
                         <span class="badge is-danger">0</span>
-                        <img src="${pageContext.request.contextPath}/resources/images/envelope.png">
+                        <img src="${pageContext.request.contextPath}/resources/images/bell.png">
                     </figure>
 
                     <div class="dropdown is-right">
@@ -179,19 +179,19 @@
                             </div>
                         </div>
 
-                        <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                        <div class="dropdown-menu" id="dropdown-menu-exit" role="menu">
                             <div class="dropdown-content has-text-weight-medium">
-                                <label class="dropdown-item has-text-centered has-text-weight-semibold has-text-link-dark">
+                                <label class="dropdown-item has-text-centered has-text-weight-semibold has-text-primary">
                                     <%= fname %> <%= lname %>
                                 </label>
                                 <hr class="dropdown-divider">
-                                <a href="#" class="dropdown-item m-1">
+                                <a href="#" class="dropdown-item has-text-grey-lighter mt-1">
                                     <span class="icon is-small mr-1">
                                         <i class="fas fa-gear"></i>
                                     </span>
                                     Settings
                                 </a>
-                                <a href="#" class="dropdown-item m-1">
+                                <a href="#" class="dropdown-item has-text-grey-lighter mt-1">
                                     <span class="icon is-small mr-1">
                                         <i class="fas fa-arrow-right-from-bracket"></i>
                                     </span>
@@ -213,7 +213,7 @@
         </c:if>
 
         <c:if test="${sessionScope.section == 'courses' or sessionScope.section == 'dashboard'}">
-            <section id="courses" class="hero is-fullheight">
+            <section id="courses" class="hero home-bg is-fullheight">
                 <div class="hero-body is-align-items-stretch">
                     <div class="container is-fluid m-0">
                         <div class="columns is-multiline">
@@ -233,19 +233,19 @@
                                 <div class="card open-course-card custom-card has-text-centered mr-5 mb-5">
                                     <div class="card-content has-text-white p-1">
                                         <div class="content" title="<%= ci.title %>">
-                                            <p class="has-text-weight-semibold"> <%= ci.title %> </p>
+                                            <p class="has-text-grey-lighter has-text-weight-semibold"> <%= ci.title %> </p>
                                         </div>
                                     </div>
 
                                     <div class="card-content has-text-white p-1">                        
                                         <div class="content" title="<%= ci.subject %>">
-                                            <p class="is-size-7">  <%= ci.subject %> </p>
+                                            <p class="has-text-grey-light is-size-7">  <%= ci.subject %> </p>
                                         </div>
                                     </div>
 
                                     <div class="card-content has-text-white p-0">                        
                                         <div class="content" title="<%= ci.teacher %>">
-                                            <p class="is-size-6">  <%= ci.teacher %> </p>
+                                            <p class="has-text-grey-lighter is-size-6">  <%= ci.teacher %> </p>
                                         </div>
                                     </div>
 

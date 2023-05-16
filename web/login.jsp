@@ -110,7 +110,7 @@
                         </form>
 
                         <!-- Button to open registration modal -->
-                        <label class="label has-text-centered has-text-weight-medium has-text-white mt-6">
+                        <label class="label has-text-centered has-text-weight-medium has-text-grey-lighter mt-6">
                             Not registered? 
                             <a id="open-reg-modal" class="has-text-link"> Create account </a>
                         </label>

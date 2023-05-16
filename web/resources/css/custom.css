@@ -12,12 +12,20 @@ body {
     font-family: 'Noto Sans', sans-serif;
 }
 
+/*Global style for any card*/
+.card {
+    cursor: pointer;
+}
+.card:hover{
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
+}
+
 /*Custom styles for input fields*/
 .custom-input {
-  background-color: #1E2E3D;
+    background-color: #1E2E3D;
 }
 .custom-input::placeholder {
-  color: #4F5B62;
+    color: #4F5B62;
 }
 
 /*Background styles for the login page section.*/
@@ -45,16 +53,24 @@ body {
 
 /*Navigation bar custom styles*/
 .navbar {
-    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2);
+    background: #1E2E3D;
+}
+.navbar-link{
+    background: #1E2E3D !important;
+}
+.navbar-dropdown {
+    background: #1E2E3D;
+}
+.navbar-item:hover {
+    background-color: #273444 !important;
+}
+.navbar-link:hover {
+    background-color: #273444 !important;
 }
 
-/*Global style for any card*/
-.card {
-    cursor: pointer;
-}
-
-.card:hover{
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+/*backgroung color for home, dashboar, courses etc.*/
+.home-bg {
+    background: #1E2E3D;
 }
 
 /*Custom style for the name acronym card*/
@@ -69,8 +85,11 @@ body {
 }
 
 /*Custom style for the course card*/
+.custom-card {
+    border-radius: 7px !important;
+}
 .custom-card .card-content {
-    background: #36474F;
+    background: #273444;
     height: 30px;
     overflow: hidden;
 }
@@ -114,10 +133,28 @@ body {
     z-index: 9999;
 }
 #course-card .modal-card {
-    border-radius: 4px;
     width: 100%;
     height: 100%;
     max-width: calc(100vw - 10rem);
     max-height: calc(100vh - 6rem);
     overflow-y: auto;
 }
+
+/*Custom styles for create course dorpdown menu*/
+#dropdown-menu-plus .dropdown-content {
+    background: #6F7782;
+}
+#dropdown-menu-plus .dropdown-item:hover {
+    background-color: #6F7782 !important;
+    color: #B6B6B6 !important;
+}
+
+/*Custom styles for sign out dorpdown menu*/
+#dropdown-menu-exit .dropdown-content {
+    background: #1E2E3E;
+}
+#dropdown-menu-exit .dropdown-item:hover {
+    background-color: #273444 !important;
+}
+
+
