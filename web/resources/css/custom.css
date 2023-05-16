@@ -67,6 +67,14 @@ body {
 .navbar-link:hover {
     background-color: #273444 !important;
 }
+.navbar-item:active,
+.navbar-item:focus {
+  background-color: #1D2632 !important;
+}
+.navbar-link:active,
+.navbar-link:focus {
+  background-color: #1D2632 !important;
+}
 
 /*backgroung color for home, dashboar, courses etc.*/
 .home-bg {
@@ -77,11 +85,11 @@ body {
 .navbar-end .card {
     border-radius:50%;
     border-width: 5px;
-    border-style:solid;
-    border-color:#00B594;
-    background-color:#00B594;
-    width:40px;
-    height:40px;
+    border-style: solid;
+    border-color: #00B594;
+    background-color: #00B594;
+    width: 40px;
+    height: 40px;
 }
 
 /*Custom style for the course card*/
@@ -89,7 +97,7 @@ body {
     border-radius: 7px !important;
 }
 .custom-card .card-content {
-    background: #354252;
+    background: #394759;
     height: 30px;
     overflow: hidden;
 }
