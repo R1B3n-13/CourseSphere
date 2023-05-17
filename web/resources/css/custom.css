@@ -6,6 +6,7 @@
 
 /*Import the google font*/
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans');
+@import url('https://fonts.googleapis.com/css2?family=Nunito');
 
 /*Global styles*/
 body {
@@ -134,7 +135,7 @@ body {
 
 /*Custom explore button*/
 .explore-button {
-    font-family: 'Noto Sans', sans-serif;
+    font-family: 'Nunito', sans-serif;
     color: #141E28 !important;
     position: absolute;
     top: 79%;
