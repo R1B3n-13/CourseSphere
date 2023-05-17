@@ -62,7 +62,7 @@
 
                         <!-- The input field for subject name -->
                         <div class="field">
-                            <input class="input is-link custom-input has-text-grey-lighter" type="text" name="subject" id="subject" placeholder="Subject"
+                            <input class="input is-link custom-input has-text-grey-lighter my-1" type="text" name="subject" id="subject" placeholder="Subject"
                                    required oninvalid="this.setCustomValidity('Please enter subject name')" oninput="this.setCustomValidity('')">
                         </div>
 

@@ -17,7 +17,7 @@ body {
     cursor: pointer;
 }
 .card:hover{
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
 }
 
 /*Custom styles for input fields*/
@@ -53,32 +53,35 @@ body {
 
 /*Navigation bar custom styles*/
 .navbar {
-    background: #1E2E3D;
+    background: #141E28;
+}
+.navbar-menu {
+    background: #141E28;
 }
 .navbar-link{
-    background: #1E2E3D !important;
+    background: #141E28 !important;
 }
 .navbar-dropdown {
-    background: #1E2E3D;
+    background: #141E28;
 }
 .navbar-item:hover {
-    background-color: #273444 !important;
+    background-color: #1C2430 !important;
 }
 .navbar-link:hover {
-    background-color: #273444 !important;
+    background-color: #1C2430 !important;
 }
 .navbar-item:active,
 .navbar-item:focus {
-  background-color: #1D2632 !important;
+    background-color: #1D2632 !important;
 }
 .navbar-link:active,
 .navbar-link:focus {
-  background-color: #1D2632 !important;
+    background-color: #1D2632 !important;
 }
 
-/*backgroung color for home, dashboar, courses etc.*/
+/*backgroung color for home, dashboard, courses etc.*/
 .home-bg {
-    background: #1E2E3D;
+    background: #141E28;
 }
 
 /*Custom style for the name acronym card*/
@@ -97,7 +100,7 @@ body {
     border-radius: 7px !important;
 }
 .custom-card .card-content {
-    background: #394759;
+    background: #1D2531;
     height: 30px;
     overflow: hidden;
 }
@@ -127,6 +130,16 @@ body {
     background-image: url("../images/background.jpg");
     background-size: cover;
     background-repeat: no-repeat;
+}
+
+/*Custom explore button*/
+.explore-button {
+    font-family: 'Noto Sans', sans-serif;
+    color: #141E28 !important;
+    position: absolute;
+    top: 79%;
+    left: 25%;
+    transform: translate(-79%, -25%);
 }
 
 /*Custom style for the course card*/

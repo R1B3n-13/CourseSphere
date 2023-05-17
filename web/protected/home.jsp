@@ -73,19 +73,19 @@
 
             <div id="navbarMenu" class="navbar-menu has-text-weight-semibold">
                 <div class="navbar-start">
-                    <a href="${pageContext.request.contextPath}/home" class="navbar-item has-text-grey-lighter">
+                    <a href="${pageContext.request.contextPath}/home" class="navbar-item has-text-grey-light">
                         <span class="icon is-small mr-1">
                             <i class="fas fa-house-user"></i>
                         </span>
                         Home
                     </a>
-                    <a href="${pageContext.request.contextPath}/courses" class="navbar-item has-text-grey-lighter">
+                    <a href="${pageContext.request.contextPath}/courses" class="navbar-item has-text-grey-light">
                         <span class="icon is-small mr-1">
                             <i class="fas fa-book"></i>
                         </span>
                         Courses
                     </a>
-                    <a href="${pageContext.request.contextPath}/dashboard" class="navbar-item has-text-grey-lighter">
+                    <a href="${pageContext.request.contextPath}/dashboard" class="navbar-item has-text-grey-light">
                         <span class="icon is-small mr-1">
                             <i class="fas fa-clipboard"></i>
                         </span>
@@ -93,7 +93,7 @@
                     </a>
 
                     <div class="navbar-item has-dropdown is-hoverable">
-                        <a class="navbar-link has-text-grey-lighter">
+                        <a class="navbar-link has-text-grey-light">
                             <span class="icon is-small mr-1">
                                 <i class="fas fa-circle-plus"></i>
                             </span>
@@ -101,38 +101,38 @@
                         </a>
 
                         <div class="navbar-dropdown is-boxed has-text-weight-medium">
-                            <a class="navbar-item has-text-grey-lighter">
+                            <a class="navbar-item has-text-grey-light">
                                 <span class="icon is-small mr-1">
                                     <i class="fas fa-circle-info"></i>
                                 </span>
                                 About
                             </a>
-                            <a class="navbar-item has-text-grey-lighter">
+                            <a class="navbar-item has-text-grey-light">
                                 <span class="icon is-small mr-1">
                                     <i class="fas fa-blog"></i>
                                 </span>
                                 Blog
                             </a>
 
-                            <a class="navbar-item has-text-grey-lighter">                                    
+                            <a class="navbar-item has-text-grey-light">                                    
                                 <span class="icon is-small mr-2">
                                     <i class="fas fa-clipboard-question"></i>
                                 </span>
                                 FAQ
                             </a>
-                            <a class="navbar-item has-text-grey-lighter">                                    
+                            <a class="navbar-item has-text-grey-light">                                    
                                 <span class="icon is-small mr-2">
                                     <i class="fas fa-star"></i>
                                 </span>
                                 Reviews
                             </a> 
-                            <a class="navbar-item has-text-grey-lighter">                                    
+                            <a class="navbar-item has-text-grey-light">                                    
                                 <span class="icon is-small mr-2">
                                     <i class="fas fa-user-tie"></i>
                                 </span>
                                 Staff
                             </a>                            
-                            <a class="navbar-item has-text-grey-lighter">                                    
+                            <a class="navbar-item has-text-grey-light">                                    
                                 <span class="icon is-small mr-2">
                                     <i class="fas fa-address-card"></i>
                                 </span>
@@ -206,8 +206,8 @@
 
         <c:if test="${sessionScope.section == 'home'}">
             <section id="home" class="hero is-fullheight">
-                <div class="hero-body is-align-items-stretch">
-
+                <div class="hero-body">
+                    <a href="${pageContext.request.contextPath}/courses" class="button explore-button is-success is-rounded is-size-5 has-text-weight-bold">Explore our courses</a>
                 </div>
             </section>
         </c:if>
@@ -233,7 +233,7 @@
                                 <div class="card open-course-card custom-card has-text-centered mr-5 mb-5">
                                     <div class="card-content has-text-white p-1">
                                         <div class="content" title="<%= ci.title %>">
-                                            <p class="has-text-grey-lighter has-text-weight-semibold"> <%= ci.title %> </p>
+                                            <p class="has-text-grey-lighter has-text-weight-medium"> <%= ci.title %> </p>
                                         </div>
                                     </div>
 
@@ -245,7 +245,7 @@
 
                                     <div class="card-content has-text-white p-0">                        
                                         <div class="content" title="<%= ci.teacher %>">
-                                            <p class="has-text-grey-lighter is-size-6">  <%= ci.teacher %> </p>
+                                            <p class="has-text-grey-light is-size-7">  <%= ci.teacher %> </p>
                                         </div>
                                     </div>
 
