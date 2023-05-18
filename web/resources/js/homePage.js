@@ -1,5 +1,5 @@
 /*
- Document   : js file for the homepage and create course form.
+ Document   : js file for the home and different pages.
  Created on : May 12, 2023, 4:32:50 PM
  Author     : Sadik Al Barid
  */
@@ -115,6 +115,6 @@ $(document).ready(function () {
 });
 
 function shareCourseData(title, subject, teacher) {
-    document.getElementById("course-card-title").innerHTML = title;
+    document.getElementById("course-card-title").innerHTML = title + "&nbsp;&nbsp;&nbsp;- " + subject;
 }
 

@@ -207,3 +207,18 @@ body {
     color: #fff !important;
 }
 
+/*Custom styles for the course modal*/
+.course-modal {
+    background: #4A4F56;
+}
+
+/*Custom styles for the placeholder text*/
+.loren-ipsum {
+    text-align: justify;
+    color: #B3DCD4;
+}
+
+.tabs li.is-active a {
+    color: #55B19F;
+    border-bottom-color: #008B6F;
+  }

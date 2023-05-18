@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="java.io.BufferedReader" %>
+<%@ page import="java.io.FileReader" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -29,21 +31,36 @@
             <div class="modal-background"></div>
             <div class="modal-card">
                 <!-- The main content section of the modal -->
-                <section class="modal-card-body">
+                <section class="modal-card-body course-modal">
                     <!-- Close button and the title -->
                     <a id="close-course-card" class="delete is-rounded is-pulled-right" aria-label="close"></a>
-                    <p id="course-card-title" class="modal-card-title has-text-weight-bold"></p>
+                    <p id="course-card-title" class="modal-card-title has-text-primary has-text-weight-bold"></p>
 
                     <!-- Tabs -->
                     <div class="tabs is-centered mt-4">
                         <ul>
-                            <li class="is-active"><a>Details</a></li>
-                            <li><a>Instructor</a></li>
-                            <li><a>Students</a></li>
+                            <li class="is-active has-text-white"><a>Details</a></li>
+                            <li><a class="has-text-white">Instructor</a></li>
+                            <li><a class="has-text-white">Students</a></li>
                         </ul>
-                    </div>
+                    </div>                    
 
+                    <!-- Load the loren ipsum placeholder using java string builder -->
+                    <%
+                        String filePath = request.getServletContext().getRealPath("/") + "/resources/placeholder/loren_ipsum.txt";
+                        StringBuilder content = new StringBuilder();
 
+                        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+                            String line;
+                            while ((line = reader.readLine()) != null) {
+                                content.append(line).append("<br>");
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    %>
+                    
+                    <p class="container is-fluid loren-ipsum"> <%= content.toString() %></p>
                 </section>                  
             </div>
         </div>
