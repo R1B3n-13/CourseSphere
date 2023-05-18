@@ -227,31 +227,43 @@
                                     <% courseInfos = courseInfos2; %>
                                 </c:when>
                             </c:choose>
+                            
+                            <%
+                                String baseImageUrl = request.getContextPath() + "/resources/images/card-images/";
+                                String[] files = { "1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg" };
+                                String[] colors = { "#56837E", "#9A4B36", "#60504A", "#4E5C62", "#254266", "#486352", "#4A5051", "#985959" };
+                            %>
 
                             <% for (CourseInfo ci : courseInfos) { %>
+                            <%                                
+                                String selectedFileName = files[ci.id % 8];
+                                String selectedColor = colors[ci.id % 8];
+                                String selectedImagePath = baseImageUrl + selectedFileName;
+                            %>
+                                    
                             <div class="column is-one-fifth" onclick="shareCourseData('<%= ci.title %>', '<%= ci.subject %>', '<%= ci.teacher %>')">
                                 <div class="card open-course-card custom-card has-text-centered mr-5 mb-5">
-                                    <div class="card-content has-text-white p-1">
+                                    <div class="card-content has-text-white p-1" style="background: <%= selectedColor %>;">
                                         <div class="content" title="<%= ci.title %>">
-                                            <p class="has-text-grey-lighter has-text-weight-medium"> <%= ci.title %> </p>
+                                            <p class="has-text-white has-text-weight-medium"> <%= ci.title %> </p>
                                         </div>
                                     </div>
 
-                                    <div class="card-content has-text-white p-1">                        
+                                    <div class="card-content has-text-white p-1" style="background: <%= selectedColor %>;">                        
                                         <div class="content" title="<%= ci.subject %>">
-                                            <p class="has-text-grey-light is-size-7">  <%= ci.subject %> </p>
+                                            <p class="has-text-grey-lighter is-size-7">  <%= ci.subject %> </p>
                                         </div>
                                     </div>
 
-                                    <div class="card-content has-text-white p-0">                        
+                                    <div class="card-content has-text-white p-0" style="background: <%= selectedColor %>;">                        
                                         <div class="content" title="<%= ci.teacher %>">
-                                            <p class="has-text-grey-light is-size-7">  <%= ci.teacher %> </p>
+                                            <p class="has-text-grey-lighter is-size-7">  <%= ci.teacher %> </p>
                                         </div>
                                     </div>
 
                                     <div class="card-image">
                                         <figure class="image is-3by2">
-                                            <img src="${pageContext.request.contextPath}/resources/images/courseCard.jpg" alt="card image">
+                                            <img src="<%= selectedImagePath %>" alt="card image">
                                         </figure>
                                     </div>
                                 </div>

@@ -56,6 +56,7 @@ public class FetchCourseDetails {
             // Push the data from resultset to the list
             while (rs.next()) {
                 CourseInfo ci = new CourseInfo();
+                ci.id = rs.getInt("course_id");
                 ci.title = rs.getString("title");
                 ci.subject = rs.getString("subject");
                 ci.teacher = rs.getString("fname") + " " + rs.getString("lname");
