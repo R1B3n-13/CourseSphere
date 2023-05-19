@@ -43,10 +43,17 @@ public class FetchCourseDetails {
 
             // Prepare the SQL statement for selecting from courses table
             if (role.equals("admin")) {
-                stmt = conn.prepareStatement("SELECT * FROM users u JOIN teachers t ON u.uname = t.uname JOIN courses c ON t.teacher_id = c.teacher_id;");
+                stmt = conn.prepareStatement("SELECT * FROM users u JOIN teachers t ON u.uname = t.uname "
+                        + "JOIN courses c ON t.teacher_id = c.teacher_id;");
             } else if (role.equals("teacher")) {
                 stmt = conn.prepareStatement("SELECT * FROM users u JOIN teachers t ON u.uname = t.uname "
-                        + "JOIN courses c ON t.teacher_id = c.teacher_id WHERE u.uname = ?");
+                        + "JOIN courses c ON t.teacher_id = c.teacher_id WHERE u.uname = ?;");
+                stmt.setString(1, uname);
+            } else if (role.equals("student")) {
+                stmt = conn.prepareStatement("SELECT * FROM users u JOIN teachers t ON u.uname = t.uname "
+                        + "JOIN courses c ON t.teacher_id = c.teacher_id "
+                        + "JOIN course_students cs ON c.course_id = cs.course_id "
+                        + "JOIN students s ON cs.student_id = s.student_id WHERE s.uname = ?;");
                 stmt.setString(1, uname);
             }
 
@@ -60,6 +67,8 @@ public class FetchCourseDetails {
                 ci.title = rs.getString("title");
                 ci.subject = rs.getString("subject");
                 ci.teacher = rs.getString("fname") + " " + rs.getString("lname");
+                ci.teacher_uname = rs.getString("uname");
+                ci.teacher_mail = rs.getString("email");
                 courseInfos.add(ci);
             }
         } catch (ClassNotFoundException | SQLException e) {
@@ -127,5 +136,43 @@ public class FetchCourseDetails {
 
         // Return the array list
         return teacherInfos;
+    }
+
+    static public int getStudentId(String uname) throws ClassNotFoundException, SQLException {
+
+        try {
+            // Load PostgreSQL JDBC driver
+            Class.forName("org.postgresql.Driver");
+
+            // Create a database connection
+            conn = DriverManager.getConnection(url, user, password);
+
+            // Prepare the SQL statement for selecting the teacher's id, fname, lname
+            stmt = conn.prepareStatement("SELECT student_id FROM students WHERE uname = ?");
+            stmt.setString(1, uname);
+
+            // Execute the SQL statement and get the result set
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+
+            // Return the student id
+            return rs.getInt("student_id");
+        } catch (ClassNotFoundException | SQLException e) {
+            // Log the error and display an error message
+            Logger.getLogger(FetchCourseDetails.class.getName()).log(Level.SEVERE, e.getMessage(), e);
+        } finally {
+            // Close the database connection and prepared statement
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                Logger.getLogger(FetchCourseDetails.class.getName()).log(Level.SEVERE, e.getMessage(), e);
+            }
+        }
+        return 0;
     }
 }

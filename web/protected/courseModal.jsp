@@ -34,14 +34,14 @@
                 <section class="modal-card-body course-modal">
                     <!-- Close button and the title -->
                     <a id="close-course-card" class="delete is-rounded is-pulled-right" aria-label="close"></a>
-                    <p id="course-card-title" class="modal-card-title has-text-primary has-text-weight-bold"></p>
+                    <p id="course-card-title" class="modal-card-title has-text-light has-text-weight-bold"></p>
 
                     <!-- Tabs -->
                     <div class="tabs is-centered mt-4">
                         <ul>
-                            <li class="is-active has-text-white"><a>Details</a></li>
-                            <li><a class="has-text-white">Instructor</a></li>
-                            <li><a class="has-text-white">Students</a></li>
+                            <li class="tab is-active" onclick='toggleTabs(event, "details")'><a class="has-text-white">Details</a></li>
+                            <li class="tab" onclick='toggleTabs(event, "instructor")'><a class="has-text-white">Instructor</a></li>
+                            <li class="tab" onclick='toggleTabs(event, "students")'><a class="has-text-white">Students</a></li>
                         </ul>
                     </div>                    
 
@@ -60,7 +60,72 @@
                         }
                     %>
                     
-                    <p class="container is-fluid loren-ipsum"> <%= content.toString() %></p>
+                    <!-- The details part -->  
+                    <p id="details" class="tab-content container is-fluid has-text-light loren-ipsum"> <%= content.toString() %></p>
+                    
+                    <!-- The instructor part -->
+                    <div id="instructor" class="tab-content" style="display: none;">
+                        <!-- Show instructor data using table -->
+                        <table class="table custom-table is-bordered mx-auto my-6">
+                            <tbody>                                
+                                <tr>
+                                    <td class='has-text-weight-bold'> Name </td>
+                                    <td id="instructor-name"></td>
+                                </tr>
+                                <tr>
+                                    <td class='has-text-weight-bold'> Username </td>
+                                    <td id="instructor-uname"></td>
+                                </tr>
+                                <tr>
+                                    <td class='has-text-weight-bold'> E-mail </td>
+                                    <td id="instructor-mail"></td>
+                                </tr>
+                                <tr>
+                                    <td class='has-text-weight-bold'> Phone </td>
+                                    <td>0519 3800056 (dummy)</td>
+                                </tr>
+                                <tr>
+                                    <td class='has-text-weight-bold'> Country </td>
+                                    <td>United Kingdom (dummy)</td>
+                                </tr>
+                                <tr>
+                                    <td class='has-text-weight-bold'> State </td>
+                                    <td>Alfieshire (dummy)</td>
+                                </tr>
+                                <tr>
+                                    <td class='has-text-weight-bold'> City </td>
+                                    <td>North Craig (dummy)</td>
+                                </tr>
+                                <tr>
+                                    <td class='has-text-weight-bold'> Address </td>
+                                    <td>752 Stewart Valleys (dummy)</td>
+                                </tr>
+                                <tr>
+                                    <td class='has-text-weight-bold'> Zip Code </td>
+                                    <td>SG6 1PR (dummy)</td>
+                                </tr>
+                                <tr>
+                                    <td class='has-text-weight-bold'> Gender </td>
+                                    <td>Male (dummy)</td>
+                                </tr>
+                                <tr>
+                                    <td class='has-text-weight-bold'> Blood Group </td>
+                                    <td>O+ve (dummy)</td>
+                                </tr>
+                                <tr>
+                                    <td class='has-text-weight-bold'> Age </td>
+                                    <td>31 (dummy)</td>
+                                </tr>
+                                <tr>
+                                    <td class='has-text-weight-bold'> Date of Birth </td>
+                                    <td>8-11-1991 (dummy)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- The students part -->
+                    <p id="students" class="tab-content container is-fluid has-text-light loren-ipsum" style="display: none;"> Students </p>
                 </section>                  
             </div>
         </div>

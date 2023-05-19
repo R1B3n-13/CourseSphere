@@ -1,16 +1,8 @@
 <%-- 
     Document   : newCourseForm
     Created on : May 10, 2023, 11:07:05 PM
-    Author     : nebir
+    Author     : Sadik Al Barid
 --%>
-
-<!-- Fetch teacher infos -->
-<% 
-    List<TeacherInfo> teacherInfos = new ArrayList<>();
-    if(role.equals("admin")) {
-        teacherInfos = FetchCourseDetails.getTeacherInfos();
-    }
-%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -37,46 +29,36 @@
     </head>
 
     <body>
-        <!-- The modal for the new course form -->
-        <div id="course-form" class="modal">
+        <!-- The modal for the join course form -->
+        <div id="enroll-form" class="modal">
             <div class="modal-background"></div>
             <div class="modal-card form-bg" style="border-radius:10px;">
                 <!-- The header section of the modal -->
                 <header class="modal-card-head form-bg">
-                    <p class="modal-card-title has-text-grey-lighter has-text-weight-semibold">Create course</p>
+                    <p class="modal-card-title has-text-grey-lighter has-text-weight-semibold">Join course</p>
                 </header>
 
-                <!-- create course form -->
-                <form id="create-course-form" method="post" action="${pageContext.request.contextPath}/create">
+                <!-- create enrollment form -->
+                <form id="enroll-course-form" method="post" action="${pageContext.request.contextPath}/join">
                     <!-- The main content section of the modal -->
-                    <section class="modal-card-body form-bg">                    
-
-                        <!-- The input field for course title -->
-                        <div class="field">
-                            <input class="input is-link custom-input has-text-grey-lighter" type="text" name="course-title" id="course-title" placeholder="Course title"
-                                   required oninvalid="this.setCustomValidity('Please enter course title')" oninput="this.setCustomValidity('')">
-                        </div>
-
-                        <!-- The input field for subject name -->
-                        <div class="field">
-                            <input class="input is-link custom-input has-text-grey-lighter my-1" type="text" name="subject" id="subject" placeholder="Subject"
-                                   required oninvalid="this.setCustomValidity('Please enter subject name')" oninput="this.setCustomValidity('')">
-                        </div>
-
-                        <!--Teacher select option-->
-                        <select id="teacher-select" name="teacher_id"
-                                required oninvalid="this.setCustomValidity('Please assign a teacher')" oninput="this.setCustomValidity('')">
+                    <section class="modal-card-body form-bg"> 
+                        <!-- Hidden input field for the student id -->
+                        <input type="text" name="student_id" value="<%= student_id %>" hidden>
+                        
+                        <!--Course select option-->
+                        <select id="course-select" name="course_id"
+                                required oninvalid="this.setCustomValidity('Please select a course')" oninput="this.setCustomValidity('')">
                             <option value=""></option>
-                            <% for (TeacherInfo ti : teacherInfos) { %>
-                                <option value="<%= ti.id %>"><%= ti.name %></option>
+                            <% for (CourseInfo ci : courseInfos1) { %>
+                                <option value="<%= ci.id %>"><%= ci.title %></option>
                             <% } %>
                         </select>
                     </section>                  
 
                     <!-- The footer section of the modal with cancel and submit button -->
                     <footer class="modal-card-foot is-flex-direction-row-reverse form-bg">
-                        <button class="button is-link is-small is-rounded has-text-grey-lighter has-text-weight-medium" type="submit">Create</button>
-                        <button id="close-course-form" class="button is-danger is-small is-rounded has-text-grey-lighter has-text-weight-medium mr-3" type="button">Cancel</button>                        
+                        <button class="button is-link is-small is-rounded has-text-grey-lighter has-text-weight-medium" type="submit">Join</button>
+                        <button id="close-enroll-form" class="button is-danger is-small is-rounded has-text-grey-lighter has-text-weight-medium mr-3" type="button">Cancel</button>                        
                     </footer>
                 </form>
             </div>

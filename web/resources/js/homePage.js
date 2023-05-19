@@ -64,11 +64,43 @@ document.addEventListener('DOMContentLoaded', function () {
         courseForm.classList.remove('is-active');
     }
 
-    // Event listener to open the form when the button is clicked
-    openCourseForm.addEventListener('click', openCourseFormFunc);
+    if (openCourseForm !== null) {
+        // Event listener to open the form when the button is clicked
+        openCourseForm.addEventListener('click', openCourseFormFunc);
 
-    // Event listener to close the form when the close button is clicked
-    closeCourseForm.addEventListener('click', closeCourseFormFunc);
+        // Event listener to close the form when the close button is clicked
+        closeCourseForm.addEventListener('click', closeCourseFormFunc);
+    }
+});
+
+// Function to add event listenr in join course menu item
+document.addEventListener('DOMContentLoaded', function () {
+    // Get the button that opens the form
+    let openEnrollForm = document.querySelector('#open-enroll-form');
+
+    // Get the button that closes the form
+    let closeEnrollForm = document.querySelector('#close-enroll-form');
+
+    // Get the join corse form modal element
+    let joinForm = document.querySelector('#enroll-form');
+
+    // Function to open the form
+    function openEnrollFormFunc() {
+        joinForm.classList.add('is-active');
+    }
+
+    // Function to close the form
+    function closeEnrollFormFunc() {
+        joinForm.classList.remove('is-active');
+    }
+
+    if (openEnrollForm !== null) {
+        // Event listener to open the form when the button is clicked
+        openEnrollForm.addEventListener('click', openEnrollFormFunc);
+
+        // Event listener to close the form when the close button is clicked
+        closeEnrollForm.addEventListener('click', closeEnrollFormFunc);
+    }
 });
 
 // Function to add event listenr in course card
@@ -109,12 +141,42 @@ $(document).ready(function () {
         width: "100%"
     });
 
-    let section = $("#data").data("param1");
+    // Use select2 for the course select option
+    $('#course-select').select2({
+        placeholder: '-- Select a course --',
+        width: "100%"
+    });
+
     // Change the URL without reloading the page
+    let section = $("#data").data("param1");
     history.replaceState(null, "", "/" + window.location.pathname.split('/')[1] + "/" + section);
 });
 
-function shareCourseData(title, subject, teacher) {
+// Function to share course data to the course modal
+function shareCourseData(title, subject, teacher, teacher_uname, teacher_mail) {
     document.getElementById("course-card-title").innerHTML = title + "&nbsp;&nbsp;&nbsp;- " + subject;
+    document.getElementById("instructor-uname").innerHTML = teacher_uname;
+    document.getElementById("instructor-name").innerHTML = teacher;
+    document.getElementById("instructor-mail").innerHTML = teacher_mail;
+}
+
+// Function to toggle between course modal tabs
+function toggleTabs(evt, tabName) {
+    let i, alltabs, tablinks;
+    // Get all the tab contents and hide them
+    alltabs = document.getElementsByClassName("tab-content");
+    for (i = 0; i < alltabs.length; i++) {
+        alltabs[i].style.display = "none";
+    }
+
+    // Remove is-active class from all the tabs
+    tablinks = document.getElementsByClassName("tab");
+    for (i = 0; i < alltabs.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" is-active", "");
+    }
+
+    // Show the clicked tab and add is-active class 
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " is-active";
 }
 

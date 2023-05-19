@@ -4,28 +4,37 @@
     Author     : Sadik Al Barid
 --%>
 
+<!-- Imports -->
 <%@ page import="com.coursesphere.main.CourseInfo" %>
+<%@ page import="com.coursesphere.main.TeacherInfo" %>
 <%@ page import="com.coursesphere.main.FetchCourseDetails" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
+
 <% 
     String uname = (String)session.getAttribute("uname");
     String fname = (String)session.getAttribute("fname");
     String lname = (String)session.getAttribute("lname");
     String role = (String)session.getAttribute("role");
     
-    // Course info for courses page
+    // Get course info for courses page
     List<CourseInfo> courseInfos1 = new ArrayList<>();
     courseInfos1 = FetchCourseDetails.getCourseInfos("admin", uname);
     
-    // Course info for dashboard
+    // Get course info for dashboard
     List<CourseInfo> courseInfos2 = new ArrayList<>();
     courseInfos2 = FetchCourseDetails.getCourseInfos(role, uname);
+    
+    int student_id = 0;
+    if(role.equals("student")) {
+        student_id = FetchCourseDetails.getStudentId(uname);
+    }
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="newCourseForm.jsp" %>
+<%@ include file="joinCourseForm.jsp" %>
 <%@ include file="courseModal.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -154,12 +163,22 @@
 
                             <div class="dropdown-menu" id="dropdown-menu-plus" role="menu">
                                 <div class="dropdown-content has-text-weight-medium">
-                                    <a id="open-course-form" class="dropdown-item has-text-centered has-text-grey-lighter mt-1">
-                                        <span class="icon is-small mr-1">
-                                            <i class="fas fa-plus"></i>
-                                        </span>
-                                        Create course
-                                    </a>
+                                    <c:if test="${role.equals('admin')}">
+                                        <a id="open-course-form" class="dropdown-item has-text-centered has-text-grey-lighter mt-1">
+                                            <span class="icon is-small mr-1">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                            Create course
+                                        </a>
+                                    </c:if>
+                                    <c:if test="${role.equals('student')}">
+                                        <a id="open-enroll-form" class="dropdown-item has-text-centered has-text-grey-lighter mt-1">
+                                            <span class="icon is-small mr-1">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                            Join course
+                                        </a>
+                                    </c:if>
                                 </div>
                             </div>
                         </div>
@@ -227,7 +246,7 @@
                                     <% courseInfos = courseInfos2; %>
                                 </c:when>
                             </c:choose>
-                            
+
                             <%
                                 String baseImageUrl = request.getContextPath() + "/resources/images/card-images/";
                                 String[] files = { "1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg" };
@@ -240,8 +259,9 @@
                                 String selectedColor = colors[ci.id % 8];
                                 String selectedImagePath = baseImageUrl + selectedFileName;
                             %>
-                                    
-                            <div class="column is-one-fifth" onclick="shareCourseData('<%= ci.title %>', '<%= ci.subject %>', '<%= ci.teacher %>')">
+
+                            <div class="column is-one-fifth" onclick="shareCourseData('<%= ci.title %>', '<%= ci.subject %>',
+                                            '<%= ci.teacher %>', '<%= ci.teacher_uname %>', '<%= ci.teacher_mail %>')">
                                 <div class="card open-course-card custom-card has-text-centered mr-5 mb-5">
                                     <div class="card-content has-text-white p-1" style="background: <%= selectedColor %>;">
                                         <div class="content" title="<%= ci.title %>">

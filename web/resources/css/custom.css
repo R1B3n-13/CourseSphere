@@ -215,10 +215,18 @@ body {
 /*Custom styles for the placeholder text*/
 .loren-ipsum {
     text-align: justify;
-    color: #B3DCD4;
 }
 
+/*Custom styles for the active tab*/
 .tabs li.is-active a {
-    color: #55B19F;
-    border-bottom-color: #008B6F;
-  }
+    color: #55B19F !important;
+    border-bottom-color: #008B6F !important;
+}
+
+/*Custom styles for table*/
+.custom-table {
+    background-color: #B0B0B0;
+}
+.custom-table tr:nth-child(even) {
+    background-color: #BBBBBB;
+}

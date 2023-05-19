@@ -11,4 +11,6 @@ public class CourseInfo {
     public String title;
     public String subject;
     public String teacher;
+    public String teacher_mail;
+    public String teacher_uname;
 }
