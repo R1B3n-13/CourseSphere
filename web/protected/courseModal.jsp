@@ -158,15 +158,18 @@
                             </thead>
                             <% } %>
 
-                            <!-- Iteratively generate the row data -->
-                            <% for (StudentInfo si : studentInfos) { %>
-                            <tr>
-                                <td><%= si.fname %></td>
-                                <td><%= si.lname %></td>
-                                <td><%= si.uname %></td>
-                                <td><%= si.mail %></td>
-                            </tr>
-                            <% } %>
+                            <!-- Table body -->
+                            <tbody>
+                                <!-- Iteratively generate the row data -->
+                                <% for (StudentInfo si : studentInfos) { %>
+                                <tr>
+                                    <td><%= si.fname %></td>
+                                    <td><%= si.lname %></td>
+                                    <td><%= si.uname %></td>
+                                    <td><%= si.mail %></td>
+                                </tr>
+                                <% } %>
+                            </tbody>
                         </table>
                     </div>
                 </section>                  

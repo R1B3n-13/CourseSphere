@@ -167,8 +167,9 @@ function shareCourseData(id, title, subject, teacher, teacher_uname, teacher_mai
             course_id: id
         },
         success: function (response) {
-            // Replace the student table content with the updated data
-            $('#student-table').html(response);
+            // Find the student-table's html portion and replace it with the updated data
+            let tableData = $(response).find('#student-table').html();
+            $('#student-table').html(tableData);
             console.log(response);
         },
         error: function () {
