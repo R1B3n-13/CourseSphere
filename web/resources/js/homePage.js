@@ -153,11 +153,28 @@ $(document).ready(function () {
 });
 
 // Function to share course data to the course modal
-function shareCourseData(title, subject, teacher, teacher_uname, teacher_mail) {
+function shareCourseData(id, title, subject, teacher, teacher_uname, teacher_mail) {
+    // Change the corresponding fields in the course modal
     document.getElementById("course-card-title").innerHTML = title + "&nbsp;&nbsp;&nbsp;- " + subject;
     document.getElementById("instructor-uname").innerHTML = teacher_uname;
     document.getElementById("instructor-name").innerHTML = teacher;
     document.getElementById("instructor-mail").innerHTML = teacher_mail;
+
+    // Send the course id to the course modal
+    $.ajax({
+        url: "protected/courseModal.jsp",
+        data: {
+            course_id: id
+        },
+        success: function (response) {
+            // Replace the student table content with the updated data
+            $('#student-table').html(response);
+            console.log(response);
+        },
+        error: function () {
+            alert('Failed to fetch updated data.');
+        }
+    });
 }
 
 // Function to toggle between course modal tabs

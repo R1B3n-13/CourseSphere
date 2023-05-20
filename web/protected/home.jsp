@@ -7,11 +7,13 @@
 <!-- Imports -->
 <%@ page import="com.coursesphere.main.CourseInfo" %>
 <%@ page import="com.coursesphere.main.TeacherInfo" %>
+<%@ page import="com.coursesphere.main.StudentInfo" %>
 <%@ page import="com.coursesphere.main.FetchCourseDetails" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 
 <% 
+    // Get the session attributes
     String uname = (String)session.getAttribute("uname");
     String fname = (String)session.getAttribute("fname");
     String lname = (String)session.getAttribute("lname");
@@ -25,6 +27,7 @@
     List<CourseInfo> courseInfos2 = new ArrayList<>();
     courseInfos2 = FetchCourseDetails.getCourseInfos(role, uname);
     
+    // Fetch the student's id
     int student_id = 0;
     if(role.equals("student")) {
         student_id = FetchCourseDetails.getStudentId(uname);
@@ -260,7 +263,7 @@
                                 String selectedImagePath = baseImageUrl + selectedFileName;
                             %>
 
-                            <div class="column is-one-fifth" onclick="shareCourseData('<%= ci.title %>', '<%= ci.subject %>',
+                            <div class="column is-one-fifth" onclick="shareCourseData('<%= ci.id %>', '<%= ci.title %>', '<%= ci.subject %>',
                                             '<%= ci.teacher %>', '<%= ci.teacher_uname %>', '<%= ci.teacher_mail %>')">
                                 <div class="card open-course-card custom-card has-text-centered mr-5 mb-5">
                                     <div class="card-content has-text-white p-1" style="background: <%= selectedColor %>;">

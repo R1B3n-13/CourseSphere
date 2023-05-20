@@ -1,8 +1,26 @@
 <%-- 
     Document   : courseModal
     Created on : May 14, 2023, 8:02:03 PM
-    Author     : nebir
+    Author     : Sadik Al Barid
 --%>
+
+<!-- Imports -->
+<%@ page import="com.coursesphere.main.StudentInfo" %>
+<%@ page import="com.coursesphere.main.FetchCourseDetails" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+
+<%
+    // Get the course_id param sent via ajax
+    int course_id = 0;
+    if(request.getParameter("course_id") != null) {
+        course_id = Integer.parseInt(request.getParameter("course_id"));
+    }
+    
+    // Get students' info
+    List<StudentInfo> studentInfos = new ArrayList<>();
+    studentInfos = FetchCourseDetails.getStudentInfos(course_id);
+%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.io.BufferedReader" %>
@@ -59,13 +77,13 @@
                             e.printStackTrace();
                         }
                     %>
-                    
+
                     <!-- The details part -->  
                     <p id="details" class="tab-content container is-fluid has-text-light loren-ipsum"> <%= content.toString() %></p>
-                    
+
                     <!-- The instructor part -->
                     <div id="instructor" class="tab-content" style="display: none;">
-                        <!-- Show instructor data using table -->
+                        <!-- Show instructor' data using table -->
                         <table class="table custom-table is-bordered mx-auto my-6">
                             <tbody>                                
                                 <tr>
@@ -123,11 +141,36 @@
                             </tbody>
                         </table>
                     </div>
-                    
+
                     <!-- The students part -->
-                    <p id="students" class="tab-content container is-fluid has-text-light loren-ipsum" style="display: none;"> Students </p>
+                    <div id="students" class="tab-content" style="display: none;">
+                        <!-- Show students' data using table -->
+                        <table id="student-table" class="table custom-table is-bordered mx-auto my-6">
+                            <!-- Table head -->
+                            <% if(studentInfos.size() != 0) { %>
+                            <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Username</th>
+                                    <th>E-mail</th>
+                                </tr>
+                            </thead>
+                            <% } %>
+
+                            <!-- Iteratively generate the row data -->
+                            <% for (StudentInfo si : studentInfos) { %>
+                            <tr>
+                                <td><%= si.fname %></td>
+                                <td><%= si.lname %></td>
+                                <td><%= si.uname %></td>
+                                <td><%= si.mail %></td>
+                            </tr>
+                            <% } %>
+                        </table>
+                    </div>
                 </section>                  
             </div>
-        </div>
+        </div>  
     </body>
 </html>
