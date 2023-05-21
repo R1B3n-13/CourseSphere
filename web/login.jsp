@@ -103,10 +103,10 @@
                                     <button class="button is-link is-rounded">Sign in</button>
                                 </p>
                             </div>
-                            
+
                             <label class="label has-text-weight-medium has-text-white mt-4">
-                            <a class="has-text-link"> Forgot password? </a>
-                        </label>
+                                <a class="has-text-link"> Forgot password? </a>
+                            </label>
                         </form>
 
                         <!-- Button to open registration modal -->

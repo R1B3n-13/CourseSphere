@@ -44,13 +44,13 @@
                     <section class="modal-card-body form-bg"> 
                         <!-- Hidden input field for the student id -->
                         <input type="text" name="student_id" value="<%= student_id %>" hidden>
-                        
+
                         <!--Course select option-->
                         <select id="course-select" name="course_id"
                                 required oninvalid="this.setCustomValidity('Please select a course')" oninput="this.setCustomValidity('')">
                             <option value=""></option>
                             <% for (CourseInfo ci : courseInfos1) { %>
-                                <option value="<%= ci.id %>"><%= ci.title %></option>
+                            <option value="<%= ci.id %>"><%= ci.title %></option>
                             <% } %>
                         </select>
                     </section>                  

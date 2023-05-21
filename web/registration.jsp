@@ -87,7 +87,7 @@
                             <div class="field-label is-normal mt-1 mr-0">
                                 <label class="label is-pulled-left has-text-grey-lighter">Role :</label>
                             </div>
-                            
+
                             <div class="field-body mt-2">
                                 <div class="control">
                                     <div class="buttons has-addons is-toggle">

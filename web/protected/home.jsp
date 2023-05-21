@@ -68,14 +68,17 @@
         <script src="https://kit.fontawesome.com/75e766e3de.js" crossorigin="anonymous"></script>
     </head>
     <body>
+        <!-- Navigation bar -->
         <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
+                <!-- Logo with homepage link -->
                 <a class="is-flex is-align-items-center ml-3 mr-3" href="${pageContext.request.contextPath}">
                     <img src="${pageContext.request.contextPath}/resources/images/logo.png" width="34" height="34" alt="Logo">
                     <p class="has-text-light has-text-weight-bold is-size-4">Course</p>
                     <p class="has-text-success has-text-weight-bold">Sphere</p>
                 </a>
 
+                <!--Hamburger menu for smartphones-->
                 <a role="button" class="navbar-burger has-text-light has-text-left" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
@@ -84,6 +87,7 @@
             </div>
 
             <div id="navbarMenu" class="navbar-menu has-text-weight-semibold">
+                <!-- Left side of the navbar -->
                 <div class="navbar-start">
                     <a href="${pageContext.request.contextPath}/home" class="navbar-item has-text-grey-light">
                         <span class="icon is-small mr-1">
@@ -112,6 +116,7 @@
                             More
                         </a>
 
+                        <!-- Dropdown menu of more section -->
                         <div class="navbar-dropdown is-boxed has-text-weight-medium">
                             <a class="navbar-item has-text-grey-light">
                                 <span class="icon is-small mr-1">
@@ -154,8 +159,9 @@
                     </div>
                 </div>
 
+                <!-- Right side of the navbar -->
                 <div class="navbar-end is-align-items-center">
-
+                    <!-- Show the plus icon if the user is not a teacher -->
                     <c:if test="${!role.equals('teacher')}">
                         <div class="dropdown is-right">
                             <div class="dropdown-trigger">
@@ -166,6 +172,7 @@
 
                             <div class="dropdown-menu" id="dropdown-menu-plus" role="menu">
                                 <div class="dropdown-content has-text-weight-medium">
+                                    <!-- Show 'create course' if the user is admin -->
                                     <c:if test="${role.equals('admin')}">
                                         <a id="open-course-form" class="dropdown-item has-text-centered has-text-grey-lighter mt-1">
                                             <span class="icon is-small mr-1">
@@ -174,6 +181,7 @@
                                             Create course
                                         </a>
                                     </c:if>
+                                    <!-- Show 'join course' if student -->
                                     <c:if test="${role.equals('student')}">
                                         <a id="open-enroll-form" class="dropdown-item has-text-centered has-text-grey-lighter mt-1">
                                             <span class="icon is-small mr-1">
@@ -187,11 +195,13 @@
                         </div>
                     </c:if>
 
+                    <!-- Notification button with a counter badge -->
                     <figure class="image is-32x32 mr-5" style="cursor: pointer;">
                         <span class="badge is-danger">0</span>
                         <img src="${pageContext.request.contextPath}/resources/images/bell.png">
                     </figure>
 
+                    <!-- The view card of the dropdown menu for signing out with the first letter of the name -->
                     <div class="dropdown is-right">
                         <div class="dropdown-trigger">
                             <div class="card m-1" style="cursor: pointer;" aria-haspopup="true" aria-controls="dropdown-menu">
@@ -201,6 +211,7 @@
                             </div>
                         </div>
 
+                        <!-- The sign out dropdown menu with the full name shown -->
                         <div class="dropdown-menu" id="dropdown-menu-exit" role="menu">
                             <div class="dropdown-content has-text-weight-medium">
                                 <label class="dropdown-item has-text-centered has-text-weight-semibold has-text-primary">
@@ -226,6 +237,7 @@
             </div>
         </nav>
 
+        <!-- Show homepage if the user requested for it -->
         <c:if test="${sessionScope.section == 'home'}">
             <section id="home" class="hero is-fullheight">
                 <div class="hero-body">
@@ -234,12 +246,14 @@
             </section>
         </c:if>
 
+        <!-- Show the dashboard or course list -->
         <c:if test="${sessionScope.section == 'courses' or sessionScope.section == 'dashboard'}">
             <section id="courses" class="hero home-bg is-fullheight">
                 <div class="hero-body is-align-items-stretch">
                     <div class="container is-fluid m-0">
                         <div class="columns is-multiline">
 
+                            <!-- Choose between the course info for dashboard and the course info for all course list -->
                             <% List<CourseInfo> courseInfos = new ArrayList<>(); %>
                             <c:choose>
                                 <c:when test="${sessionScope.section == 'courses'}">
@@ -250,12 +264,14 @@
                                 </c:when>
                             </c:choose>
 
+                            <!-- card images and their corresponding colors for courses -->
                             <%
                                 String baseImageUrl = request.getContextPath() + "/resources/images/card-images/";
                                 String[] files = { "1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg" };
                                 String[] colors = { "#56837E", "#9A4B36", "#60504A", "#4E5C62", "#254266", "#486352", "#4A5051", "#985959" };
                             %>
 
+                            <!-- Iteratively generate the course cards -->
                             <% for (CourseInfo ci : courseInfos) { %>
                             <%                                
                                 String selectedFileName = files[ci.id % 8];
@@ -263,27 +279,29 @@
                                 String selectedImagePath = baseImageUrl + selectedFileName;
                             %>
 
+                            <!-- Generate the course card column and share the course infos to the course card modal via JS file -->
                             <div class="column is-one-fifth" onclick="shareCourseData('<%= ci.id %>', '<%= ci.title %>', '<%= ci.subject %>',
                                             '<%= ci.teacher %>', '<%= ci.teacher_uname %>', '<%= ci.teacher_mail %>')">
+                                <!-- Course title -->
                                 <div class="card open-course-card custom-card has-text-centered mr-5 mb-5">
                                     <div class="card-content has-text-white p-1" style="background: <%= selectedColor %>;">
                                         <div class="content" title="<%= ci.title %>">
                                             <p class="has-text-white has-text-weight-medium"> <%= ci.title %> </p>
                                         </div>
                                     </div>
-
+                                    <!-- Subject of the course -->
                                     <div class="card-content has-text-white p-1" style="background: <%= selectedColor %>;">                        
                                         <div class="content" title="<%= ci.subject %>">
                                             <p class="has-text-grey-lighter is-size-7">  <%= ci.subject %> </p>
                                         </div>
                                     </div>
-
+                                    <!-- corresponding teacher name -->
                                     <div class="card-content has-text-white p-0" style="background: <%= selectedColor %>;">                        
                                         <div class="content" title="<%= ci.teacher %>">
                                             <p class="has-text-grey-lighter is-size-7">  <%= ci.teacher %> </p>
                                         </div>
                                     </div>
-
+                                    <!-- Show the selected course card image -->
                                     <div class="card-image">
                                         <figure class="image is-3by2">
                                             <img src="<%= selectedImagePath %>" alt="card image">

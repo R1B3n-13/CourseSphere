@@ -68,7 +68,7 @@
                                 required oninvalid="this.setCustomValidity('Please assign a teacher')" oninput="this.setCustomValidity('')">
                             <option value=""></option>
                             <% for (TeacherInfo ti : teacherInfos) { %>
-                                <option value="<%= ti.id %>"><%= ti.name %></option>
+                            <option value="<%= ti.id %>"><%= ti.name %></option>
                             <% } %>
                         </select>
                     </section>                  
