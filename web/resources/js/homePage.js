@@ -170,7 +170,6 @@ function shareCourseData(id, title, subject, teacher, teacher_uname, teacher_mai
             // Find the student-table's html portion and replace it with the updated data
             let tableData = $(response).find('#student-table').html();
             $('#student-table').html(tableData);
-            console.log(response);
         },
         error: function () {
             alert('Failed to fetch updated data.');
@@ -196,5 +195,37 @@ function toggleTabs(evt, tabName) {
     // Show the clicked tab and add is-active class 
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " is-active";
+}
+
+// Funtion to confirm sign out
+function confirmSignOut() {
+    // Prevent adding # to the end of the url
+    event.preventDefault();
+
+    // The sign out confirmation modal
+    let confirmationModal = `
+        <div class="modal" id="confirmationModal">
+          <div class="modal-background"></div>
+          <div class="modal-content confirmation-modal-content">
+            <div class="box">
+              <h5>Are you sure you want to sign out?</h5>
+              <div class="buttons">
+                <button class="button is-primary" onclick="proceedSignOut()">Sign Out</button>
+                <button class="button is-danger" onclick="document.getElementById('confirmationModal').classList.remove('is-active')">Cancel</button>
+              </div>
+            </div>
+          </div>
+          <button class="modal-close is-large" aria-label="close" onclick="document.getElementById('confirmationModal').classList.remove('is-active')"></button>
+        </div>
+      `;
+
+    // Insert the modal to the body and add is-active class
+    document.body.insertAdjacentHTML('beforeend', confirmationModal);
+    document.getElementById('confirmationModal').classList.add('is-active');
+}
+
+// Function to redirect to the logout servlet
+function proceedSignOut() {
+    window.location.href = "/" + window.location.pathname.split('/')[1] + "/logout";
 }
 

@@ -213,7 +213,7 @@
                                     </span>
                                     Settings
                                 </a>
-                                <a href="#" class="dropdown-item has-text-grey-lighter mt-1">
+                                <a href="#" onclick="confirmSignOut()" class="dropdown-item has-text-grey-lighter mt-1">
                                     <span class="icon is-small mr-1">
                                         <i class="fas fa-arrow-right-from-bracket"></i>
                                     </span>
